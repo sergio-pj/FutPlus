@@ -1,0 +1,226 @@
+/* Configurações Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #0b0b0b; /* Preto quase puro */
+    color: #ffffff;
+}
+
+/* Header */
+.top-bar {
+    background-color: #39FF14; /* Verde Neon */
+    color: #000;
+    text-align: center;
+    padding: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background: #000;
+    border-bottom: 1px solid #222;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #39FF14;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #39FF14;
+}
+
+/* Seção Hero (Banner) */
+.hero {
+    height: 70vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), 
+                url('SUA-IMAGEM-DO-NEYMAR-MESSI-CR7.jpg'); /* Você vai colocar sua foto aqui */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.promo-badge {
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: #39FF14;
+    font-weight: bold;
+}
+
+/* Botão Neon */
+.btn-neon {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #39FF14;
+    color: #000;
+    text-decoration: none;
+    font-weight: 900;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+    transition: 0.4s;
+}
+
+.btn-neon:hover {
+    box-shadow: 0 0 30px #39FF14;
+    transform: scale(1.05);
+}
+
+/* Grid de Produtos */
+.products {
+    padding: 50px 10%;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    border: 1px solid #39FF14;
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.price {
+    color: #39FF14;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Títulos da Seção */
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+.section-title p {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Customização dos Cards */
+.product-card {
+    background: #111;
+    border: 1px solid #222;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    border-color: #39FF14;
+    box-shadow: 0 10px 20px rgba(57, 255, 20, 0.1);
+}
+
+.badge-discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #39FF14;
+    color: #000;
+    padding: 5px 10px;
+    font-weight: 900;
+    font-size: 0.7rem;
+    z-index: 2;
+}
+
+.product-info {
+    padding: 20px;
+    text-align: left;
+}
+
+.category {
+    color: #39FF14;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.product-info h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    height: 40px; /* Mantém o alinhamento se o nome for longo */
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #666;
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+
+.btn-buy-now {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: 1px solid #39FF14;
+    color: #39FF14;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.btn-buy-now:hover {
+    background: #39FF14;
+    color: #000;
+}
