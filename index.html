@@ -4,152 +4,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FutPlus | Camisas de Time Premium</title>
+    <link rel="stylesheet" href="Styles/global.css">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <header>
-        <div class="top-bar">Frete para todo o Brasil 🇧🇷</div>
-        <nav>
-            <div class="logo">FUT<span>PLUS</span></div>
-            <ul>
-                <li><a href="#">Brasileirão</a></li>
-                <li><a href="#">Europeus</a></li>
-                <li><a href="#">Retrô</a></li>
-                <li><a href="#">Seleções</a></li>
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="index.html">FUT<span>PLUS</span></a>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="sobre.html">Sobre Nós</a></li>
+                <li><a href="contato.html">Contato</a></li>
             </ul>
-            <div class="cart-icon">🛒</div>
+
+            <div class="header-right">
+                <button class="btn-add-cart" onclick="adicionarAoCarrinho()">
+    <i class="fas fa-cart-plus"></i> ADICIONAR AO CARRINHO
+</button>
+            </div>
         </nav>
-        <div class="benefits-bar">
-            <div class="benefit-item">🚚 Envio para todo Brasil</div>
-            <div class="benefit-item">🛡️ Compra 100% Segura</div>
-            <div class="benefit-item">👕 Personalização Oficial</div>
-            <div class="benefit-item">💳 Parcelamento em até 12x</div>
-        </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <a href="https://wa.me/11980177729" class="btn-neon">CHAMAR NO WHATSAPP</a>
-        </div>
-    </section>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <a href="https://wa.me/5511980177729" class="btn-neon">CHAMAR NO WHATSAPP</a>
+            </div>
+        </section>
 
-    <section class="categories-mosaico">
-        <div class="cat-card brasuca">
-            <span>BRASILEIRÃO</span>
-        </div>
-        <div class="cat-card europeus">
-            <span>EUROPEUS</span>
-        </div>
-        <div class="cat-card retro">
-            <span>RETRÔ</span>
-        </div>
-    </section>
+        <section class="categories-mosaico">
+            <div class="cat-card brasuca"><span>BRASILEIRÃO</span></div>
+            <div class="cat-card europeus"><span>EUROPEUS</span></div>
+            <div class="cat-card retro"><span>RETRÔ</span></div>
+        </section>
 
-    <section class="products">
-        <div class="section-title">
-            <h2>OS MELHORES DO MUNDO</h2>
-            <p>Camisas exclusivas com personalização oficial</p>
-        </div>
-
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="badge-discount">-15% OFF</div>
-                <div class="product-image">
-                    <img src="modelos/Corinthians_modelo.png" alt="Camisa Corinthians">
-                </div>
-                <div class="product-info">
-                    <span class="category">BRASILEIRÃO / RETRÔ</span>
-                    <h3>Camisa Corinthians Jogador 24/25</h3>
-                    <div class="rating">⭐⭐⭐⭐⭐ (48)</div>
-                    <p class="price">R$ 140,00 <span class="old-price">R$ 180,00</span></p>
-                    <a href="https://wa.me/SEUNUMERO?text=Quero+a+camisa+do+Corinthians" class="btn-buy-now">GARANTIR A MINHA</a>
-                </div>
+        <section class="products" id="produtos">
+            <div class="section-title">
+                <h2>OS MELHORES DO MUNDO</h2>
+                <p>Camisas exclusivas com personalização oficial</p>
             </div>
 
-            <div class="product-card">
-                <div class="badge-discount">-15% OFF</div>
-                <div class="product-image">
-                    <img src="modelos/camisa_copa_america_brasil_2004_2005_retro_azul.png" alt="Camisa Brasil">
+            <div class="product-grid">
+                <div class="product-card">
+                    <span class="custom-badge">✨ Personalização Grátis</span>
+                    <div class="badge-discount">-15% OFF</div>
+                    <div class="product-image">
+                        <img src="Destaques/Corinthians_modelo1.png" alt="Frente Camisa Corinthians" class="img-frente">
+                        <img src="Destaques/Corinthians_costaspersonalizável1.png" alt="Costas Personalizada" class="img-costas">
+                    </div>
+                    <div class="product-info">
+                        <span class="category">BRASILEIRÃO / 24-25</span>
+                        <h3>Camisa Corinthians Jogador</h3>
+                        <div class="rating">⭐⭐⭐⭐⭐ (48)</div>
+                        <p class="price">R$ 140,00 <span class="old-price">R$ 180,00</span></p>
+                        <a href="produtos.html" class="btn-buy-now">CUSTOMIZAR AGORA</a>
+                    </div>
                 </div>
-                <div class="product-info">
-                    <span class="category">SELEÇÕES / BRASIL</span>
-                    <h3>Camisa Brasil Home 24/25</h3>
-                    <div class="rating">⭐⭐⭐⭐⭐ (62)</div>
-                    <p class="price">R$ 140,00 <span class="old-price">R$ 180,00</span></p>
-                    <a href="https://wa.me/SEUNUMERO?text=Quero+a+camisa+do+Brasil" class="btn-buy-now">GARANTIR A MINHA</a>
+
+                <div class="product-card">
+                    <span class="custom-badge">✨ Personalização Grátis</span>
+                    <div class="badge-discount">-15% OFF</div>
+                    <div class="product-image">
+                        <img src="Destaques/Brasil_2004&2005_retro_azul1.png" alt="Frente Brasil Retro" class="img-frente">
+                        <img src="Destaques/Brasil_2005&2005_costaspersonálizavel1.png" alt="Costas Brasil" class="img-costas">
+                    </div>
+                    <div class="product-info">
+                        <span class="category">SELEÇÕES / RETRÔ</span>
+                        <h3>Camisa Brasil Azul 04/05</h3>
+                        <div class="rating">⭐⭐⭐⭐⭐ (48)</div>
+                        <p class="price">R$ 140,00 <span class="old-price">R$ 180,00</span></p>
+                        <a href="produtos.html" class="btn-buy-now">CUSTOMIZAR AGORA</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <span class="custom-badge">✨ Personalização Grátis</span>
+                    <div class="badge-discount">-15% OFF</div>
+                    <div class="product-image">
+                        <img src="Destaques/RealMadri_Third KitAdidas1.png" alt="Frente Real Madrid" class="img-frente">
+                        <img src="Destaques/RealMadrid_Adidas_costaspersonalizável1.png" alt="Costas Real Madrid" class="img-costas">
+                    </div>
+                    <div class="product-info">
+                        <span class="category">EUROPA / ESPANHA</span>
+                        <h3>Camisa Real Madrid Third</h3>
+                        <div class="rating">⭐⭐⭐⭐⭐ (55)</div>
+                        <p class="price">R$ 140,00 <span class="old-price">R$ 180,00</span></p>
+                        <a href="produtos.html" class="btn-buy-now">CUSTOMIZAR AGORA</a>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="product-card">
-                <div class="badge-discount">-15% OFF</div>
-                <div class="product-image">
-                    <img src="modelos/REAL-MADRID-25-26.png" alt="Camisa Real Madrid">
-                </div>
-                <div class="product-info">
-                    <span class="category">EUROPA / ESPANHA</span>
-                    <h3>Camisa Real Madrid Home 24/25</h3>
-                    <div class="rating">⭐⭐⭐⭐⭐ (55)</div>
-                    <p class="price">R$ 140,00 <span class="old-price">R$ 180,00</span></p>
-                    <a href="https://wa.me/SEUNUMERO?text=Quero+a+camisa+do+Real+Madrid" class="btn-buy-now">GARANTIR A MINHA</a>
-                </div>
+        <section class="size-table">
+            <div class="section-title">
+                <h2>TABELA DE MEDIDAS</h2>
+                <p>Compare com uma camisa que você já possui</p>
             </div>
-        </div>
-    </section>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tamanho</th>
+                            <th>Largura (cm)</th>
+                            <th>Altura (cm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>P</td><td>49-51</td><td>70-72</td></tr>
+                        <tr><td>M</td><td>51-53</td><td>72-74</td></tr>
+                        <tr><td>G</td><td>53-55</td><td>74-76</td></tr>
+                        <tr><td>GG</td><td>55-57</td><td>76-78</td></tr>
+                    </tbody>
+                </table>
+                <p class="obs">*Margem de erro de 2 a 3 cm.</p>
+            </div>
+        </section>
+    </main>
 
-    <section class="size-table">
-        <div class="section-title">
-            <h2>TABELA DE MEDIDAS</h2>
-            <p>Compare as medidas com uma camisa que você já tem</p>
-        </div>
-
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tamanho</th>
-                        <th>Largura (cm)</th>
-                        <th>Altura (cm)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>P</td><td>49-51</td><td>70-72</td></tr>
-                    <tr><td>M</td><td>51-53</td><td>72-74</td></tr>
-                    <tr><td>G</td><td>53-55</td><td>74-76</td></tr>
-                    <tr><td>GG</td><td>55-57</td><td>76-78</td></tr>
-                </tbody>
-            </table>
-            <p class="obs">*As medidas podem variar de 2 a 3 cm para mais ou para menos.</p>
-        </div>
-    </section>
-
-    <footer>
+    <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-box">
                 <h4>FUT<span>PLUS</span></h4>
-                <p>A maior variedade de camisas de time premium com personalização oficial.</p>
+                <p>Qualidade premium e personalização oficial em cada detalhe.</p>
             </div>
             <div class="footer-box">
-                <h4>DÚVIDAS</h4>
+                <h4>AJUDA</h4>
                 <ul>
-                    <li><a href="#">Prazo de Entrega</a></li>
-                    <li><a href="#">Trocas e Devoluções</a></li>
-                    <li><a href="#">Tabela de Medidas</a></li>
+                    <li><a href="sobre.html">Quem Somos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="#">Envio e Prazo</a></li>
                 </ul>
             </div>
             <div class="footer-box">
                 <h4>PAGAMENTO</h4>
                 <div class="payment-icons">
-                    <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa">
-                    <img src="https://img.icons8.com/color/48/000000/mastercard.png" alt="Mastercard">
-                    <img src="https://img.icons8.com/color/48/000000/pix.png" alt="Pix">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-pix"></i>
                 </div>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2026 FutPlus Oficial - Todos os direitos reservados.
+            &copy; 2025 FutPlus Oficial - Todos os direitos reservados.
         </div>
     </footer>
+
+    <script src="JS/script.js"></script>
 </body>
 </html>

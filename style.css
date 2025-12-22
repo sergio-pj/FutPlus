@@ -62,7 +62,7 @@ nav ul li a:hover {
 /* Seção Hero (Banner) */
 .hero {
     height: 85vh;
-    background: url('img_roles/banner.png'); 
+    background: url('img_roles/banner1.png'); 
     background-size: cover;
     background-position: center;
     display: flex;
@@ -398,4 +398,62 @@ tr:hover {
     border: 1px solid #39FF14; /* Verde neon brilha no hover */
     box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
     transform: translateY(-5px); /* Efeito de levante */
+}
+
+.custom-badge {
+    background: #39FF14;
+    color: #000;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    font-weight: 900;
+    border-radius: 50px;
+    text-transform: uppercase;
+}
+
+/* Container da imagem - garante que fiquem uma em cima da outra */
+.product-image {
+    position: relative;
+    width: 100%;
+    height: 350px; /* Ajuste para a altura das suas fotos */
+    overflow: hidden;
+}
+
+/* Configuração comum para ambas */
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.6s ease-in-out; /* Velocidade da troca */
+}
+
+/* A foto das costas começa invisível */
+.img-costas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+/* Quando passar o mouse no CARD inteiro: */
+.product-card:hover .img-frente {
+    opacity: 0; /* Frente some */
+}
+
+.product-card:hover .img-costas {
+    opacity: 1; /* Costas aparecem */
+}
+
+.input-custom {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    background: #1a1a1a;
+    border: 1px solid #39FF14; /* Verde neon do seu site */
+    color: white;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+.customization-fields {
+    margin-top: 15px;
 }

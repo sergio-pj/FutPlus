@@ -1,0 +1,216 @@
+.catalog-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.catalog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.catalog-header h1 {
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 900;
+}
+
+/* Barra de Busca */
+.search-bar {
+    display: flex;
+    background: #141414;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    padding: 12px 20px;
+    color: white;
+    width: 300px;
+}
+
+.search-bar button {
+    background: var(--neon-green);
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+/* Layout Principal */
+.catalog-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+}
+
+/* Sidebar */
+.filters-sidebar {
+    background: #141414;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #222;
+    height: fit-content;
+}
+
+.filter-section {
+    margin-bottom: 30px;
+}
+
+.filter-section h3 {
+    font-size: 1rem;
+    color: var(--neon-green);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.filter-section label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* Grade de Produtos */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    border-color: var(--neon-green);
+    transform: translateY(-5px);
+}
+
+.product-img {
+    position: relative;
+    background: #fff; /* Fundo branco para destacar a camisa */
+    height: 300px;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.badge-card {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--neon-green);
+    color: black;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    border-radius: 5px;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.category {
+    font-size: 0.7rem;
+    color: var(--neon-green);
+    font-weight: bold;
+}
+
+.product-info h4 {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+.price {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--neon-green);
+    margin: 10px 0;
+}
+
+.old-price {
+    font-size: 0.9rem;
+    color: #666;
+    text-decoration: line-through;
+    margin-left: 10px;
+}
+
+.btn-details {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid var(--neon-green);
+    color: var(--neon-green);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-details:hover {
+    background: var(--neon-green);
+    color: black;
+}
+
+/* Estilo do botão Adicionar ao Carrinho */
+.btn-add-cart {
+    width: 100%;
+    padding: 18px;
+    background: transparent;
+    color: #39ff14; /* Verde Neon */
+    border: 2px solid #39ff14;
+    font-weight: 900;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 15px; /* Espaço entre os botões */
+    transition: 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-add-cart:hover {
+    background: rgba(57, 255, 20, 0.1);
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Ajuste no ícone do carrinho no Header para ele brilhar */
+.cart-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+}
+
+#cart-count {
+    background: #39ff14;
+    color: black;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    box-shadow: 0 0 10px #39ff14;
+}

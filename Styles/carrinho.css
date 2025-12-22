@@ -1,0 +1,150 @@
+.cart-page {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+    min-height: 70vh;
+}
+
+.cart-page h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.cart-page h1 span { color: #39ff14; }
+
+.cart-content {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 30px;
+}
+
+/* Item no Carrinho */
+.cart-item {
+    background: #111;
+    border: 1px solid #222;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 8px;
+}
+
+.item-info { flex: 1; }
+
+.item-info h4 { font-size: 1.1rem; color: #fff; margin-bottom: 5px; }
+
+.item-info p { font-size: 0.85rem; color: #888; }
+
+.item-price {
+    font-weight: 900;
+    color: #39ff14;
+    font-size: 1.2rem;
+}
+
+.btn-remove {
+    background: transparent;
+    border: none;
+    color: #ff4444;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.btn-remove:hover { transform: scale(1.2); }
+
+/* Resumo */
+.cart-summary {
+    background: #111;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    height: fit-content;
+}
+
+.summary-details p {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #39ff14;
+    margin-top: 15px;
+}
+
+.btn-checkout {
+    width: 100%;
+    padding: 18px;
+    background: #39ff14;
+    border: none;
+    border-radius: 8px;
+    font-weight: 900;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.btn-continue {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* Campo de Cupom */
+.coupon-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.coupon-section input {
+    flex: 1;
+    background: #000;
+    border: 1px solid #333;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+}
+
+.coupon-section button {
+    background: transparent;
+    border: 1px solid #39ff14;
+    color: #39ff14;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Info de Entrega */
+.delivery-info {
+    background: rgba(57, 255, 20, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: #ccc;
+    border: 1px solid rgba(57, 255, 20, 0.1);
+}
+
+.delivery-info i { color: #39ff14; margin-top: 3px; }
+
+.free-shipping { color: #39ff14; font-weight: bold; }
