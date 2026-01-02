@@ -121,6 +121,35 @@ body {
 
 /* 5. RESPONSIVIDADE (SEMPRE NO FINAL DO ARQUIVO) */
 @media (max-width: 768px) {
+
+    .catalog-layout {
+        display: block; /* Tira o grid de duas colunas */
+    }
+
+    .filters-sidebar {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 20px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-color: var(--neon-green);
+        scrollbar-width: thin; /* Para Firefox */
+    }
+
+    .filters-sidebar::-webkit-scrollbar {
+        height: 4px;
+    }
+    .filters-sidebar::-webkit-scrollbar-thumb {
+        background: var(--neon-green);
+        border-radius: 10px;
+    }
+
+    .filter-section {
+        margin-bottom: 0;
+        min-width: 150px; /* Garante que as seções não fiquem espremidas */
+    }
+
     /* Força o empilhamento de TUDO */
     .product-page, .cart-content, .container-principal {
         display: flex !important;
@@ -145,5 +174,16 @@ body {
     .btn-add-cart, .btn-buy {
         width: 100% !important;
         margin: 10px 0 !important;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+    }
+    
+    .nav-links {
+        gap: 10px;
+        font-size: 0.7rem; /* Diminui um pouco as letras para caber tudo */
     }
 }

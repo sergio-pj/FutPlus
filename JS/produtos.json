@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "nome": "Camisa Corinthians Jogador 24/25",
+        "estilo": "brasileirao",
+        "preco": 160,
+        "categoria": "BRASILEIRÃO",
+        "foto": "Destaques/Corinthians_modelo1.png",
+        "link": "produto_detalhes.html",
+        "badge": "-15% OFF"
+    },
+    {
+        "id": 2,
+        "nome": "Camisa Real Madrid Home 24/25 Third",
+        "estilo": "europeus",
+        "preco": 160,
+        "categoria": "EUROPA / ESPANHA",
+        "foto": "Destaques/RealMadri_Third KitAdidas1.png",
+        "link": "produto_detalhes.html",
+        "badge": ""
+    },
+    {
+        "id": 3,
+        "nome": "Camisa Retrô Brasil 2005/2005",
+        "estilo": "retro selecoes",
+        "preco": 200,
+        "categoria": "SELEÇÕES / RETRÔ",
+        "foto": "Destaques/Brasil_2004&2005_retro_azul1.png",
+        "link": "produto_detalhes.html",
+        "badge": "RETRÔ"
+    }
+]

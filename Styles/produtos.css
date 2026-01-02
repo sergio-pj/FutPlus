@@ -22,25 +22,42 @@
 /* Barra de Busca */
 .search-bar {
     display: flex;
-    background: #141414;
+    background: #111; /* Fundo mais escuro */
     border: 1px solid #333;
     border-radius: 8px;
     overflow: hidden;
+    max-width: 400px;
+    transition: 0.3s;
+}
+
+.search-bar:focus-within {
+    border-color: #39ff14;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
 }
 
 .search-bar input {
     background: transparent;
     border: none;
-    padding: 12px 20px;
+    padding: 12px 15px;
     color: white;
-    width: 300px;
+    flex: 1;
+    outline: none;
+    font-size: 0.9rem;
 }
 
 .search-bar button {
-    background: var(--neon-green);
-    border: none;
-    padding: 0 20px;
-    cursor: pointer;
+    background: #39ff14 !important;
+    color: #000 !important;
+    border: none !important;
+    padding: 0 15px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.search-bar button:hover {
+    background: #32e612;
 }
 
 /* Layout Principal */
@@ -52,10 +69,11 @@
 
 /* Sidebar */
 .filters-sidebar {
-    background: #141414;
+    background: #0a0a0a;
     padding: 25px;
-    border-radius: 12px;
-    border: 1px solid #222;
+    border-radius: 15px;
+    border: 1.5px solid #39ff14; /* Borda neon fixa como na foto */
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.1);
     height: fit-content;
 }
 
@@ -64,17 +82,44 @@
 }
 
 .filter-section h3 {
-    font-size: 1rem;
-    color: var(--neon-green);
-    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #39ff14;
+    margin-bottom: 20px;
     text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.filter-section select {
+    width: 100%;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    outline: none;
 }
 
 .filter-section label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+    color: #ccc;
+    transition: 0.3s;
     cursor: pointer;
+}
+
+.filter-section label:hover {
+    color: #39FF14;
+}
+
+/* Deixar o checkbox verde neon */
+.filter-section input[type="checkbox"] {
+    accent-color: #39FF14;
+    width: 16px;
+    height: 16px;
 }
 
 /* Grade de Produtos */
@@ -85,15 +130,14 @@
 }
 
 .product-card {
-    background: #141414;
+    background: #111;
     border: 1px solid #222;
-    border-radius: 15px;
-    overflow: hidden;
-    transition: 0.3s;
+    border-radius: 12px;
+    transition: 0.3s ease;
 }
 
 .product-card:hover {
-    border-color: var(--neon-green);
+    border-color: #39ff14;
     transform: translateY(-5px);
 }
 
@@ -137,10 +181,9 @@
 }
 
 .price {
-    font-size: 1.4rem;
-    font-weight: 900;
-    color: var(--neon-green);
-    margin: 10px 0;
+    color: #39ff14;
+    font-weight: 800;
+    font-size: 1.3rem;
 }
 
 .old-price {
@@ -150,6 +193,27 @@
     margin-left: 10px;
 }
 
+.btn-apply-filters {
+    width: 100% !important;
+    background-color: #39ff14 !important; /* Verde Neon */
+    color: #000 !important; /* Texto Preto para dar contraste */
+    border: none !important;
+    padding: 12px !important;
+    border-radius: 8px !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    font-family: 'Montserrat', sans-serif !important;
+    cursor: pointer !important;
+    margin-top: 15px !important;
+    transition: all 0.3s ease !important;
+    display: block !important;
+}
+
+.btn-apply-filters:hover {
+    background-color: #fff !important; /* Fica branco no hover */
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.6) !important;
+    transform: scale(1.02) !important;
+}
 .btn-details {
     display: block;
     text-align: center;
@@ -213,4 +277,103 @@
     top: -10px;
     right: -10px;
     box-shadow: 0 0 10px #39ff14;
+}
+
+.mobile-only-btn {
+    display: none;
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    border: 1px solid #39ff14;
+    color: #39ff14;
+    font-weight: 900;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* --- RESPONSIVIDADE (MOBILE) --- */
+@media (max-width: 768px) {
+    /* 1. Força o layout a virar uma coluna única */
+    .mobile-only-btn {
+        display: block; /* Aparece só no celular */
+    }
+
+    .catalog-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px;
+    }
+
+    /* Centraliza o título "Todos os Produtos" e ajusta a busca */
+    .catalog-header {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    .catalog-header h1 {
+        text-align: center;
+        font-size: 1.6rem;
+    }
+
+    /* 3. Faz a barra de busca ocupar a largura total */
+    .search-bar {
+        margin-top: 10px;
+    }
+
+    /* Ajusta a sidebar para não ficar "esmagada" como na imagem */
+    .filters-sidebar {
+        display: none; /* Escondido por padrão */
+        margin-bottom: 20px;
+    }
+
+    .filters-sidebar > div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .filters-sidebar.active {
+        display: block !important;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    /* 5. Ajusta o Botão de Aplicar para ficar bem grande e clicável */
+    .btn-apply-filters {
+        grid-column: 1 / -1; /* Faz o botão ocupar as duas colunas no mobile */
+        background: #39ff14 !important;
+        color: #000 !important;
+        border: none !important;
+        padding: 12px !important;
+        font-weight: 900 !important;
+        border-radius: 5px !important;
+        margin-top: 10px !important;
+        text-align: center;
+    }
+
+    /* 6. Ajusta a grade de produtos para não ficar com cards gigantes */
+    .products-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+
+    .product-img {
+        height: 200px; /* Diminui a altura da imagem no mobile */
+    }
+
+    .product-info h4 {
+        font-size: 0.8rem !important;
+        height: 40px;
+        overflow: hidden;
+    }
+
+    .price {
+        font-size: 1rem !important;
+    }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

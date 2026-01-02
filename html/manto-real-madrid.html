@@ -7,8 +7,7 @@
     <link rel="icon" type="image/png" href="img_roles/F (1).png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="Styles/global.css">
-    <link rel="stylesheet" href="Styles/produto_detalhe.css">
+    <link rel="stylesheet" href="../Styles/detalhes.css">
 </head>
 
 <body>
@@ -47,17 +46,21 @@
         </div>
 
         <div class="product-details">
-            <span class="badge-new">Lançamento 24/25</span>
-            <h1>Camisa Corinthians Jogador</h1>
-            <p class="price" id="total-price">R$ 160,00</p>
-            
-            <div class="custom-box">
-                <label class="label-personaliza">Nome no Dorso (+ R$ 20,00)</label>
-                <input type="text" id="input-nome" class="input-custom" oninput="atualizarTudo()" maxlength="12" placeholder="EX: JUNIOR">
-                
-                <label class="label-personaliza">Número</label>
-                <input type="number" id="input-numero" class="input-custom" oninput="atualizarTudo()" max="99" placeholder="01">
-            </div>
+            <span class="category">EUROPA / ESPANHA</span>
+<h1>Camisa Real Madrid Third</h1>
+
+<div class="product-price">
+    <span id="total-price">R$ 140,00</span>
+    <p class="custom-hint">Nome no Dorso (+ R$ 20,00)</p>
+</div>
+
+<div class="main-image">
+    <img src="Destaques/RealMadri_Third KitAdidas1.png" id="camisa-base" alt="Real Madrid">
+</div>
+<div class="thumb-container">
+    <img src="Destaques/RealMadri_Third KitAdidas1.png" onclick="trocarFoto(this.src, false)">
+    <img src="Destaques/RealMadrid_Adidas_costaspersonalizável1.png" onclick="trocarFoto(this.src, true)">
+</div>
 
             <input type="hidden" id="tamanho-selecionado" value="">
             
@@ -137,7 +140,7 @@
                 <li><a href="sobre.html">Quem Somos</a></li>
                 <li><a href="contato.html">Contato</a></li>
             </ul>
-        </div>  
+        </div>
 
         <div class="footer-box">
             <h4>Atendimento</h4>

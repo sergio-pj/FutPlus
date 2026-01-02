@@ -1,111 +1,100 @@
 window.addEventListener('load', renderizarCarrinho);
 
+let descontoGlobal = 0; // Armazena o desconto do cupom
+
 function renderizarCarrinho() {
     const container = document.getElementById('cart-items-container');
     const carrinho = JSON.parse(localStorage.getItem('futplus_cart')) || [];
-    let total = 0;
+    let subtotal = 0;
 
     if (carrinho.length === 0) {
         container.innerHTML = `<p style="color: #666; text-align: center; grid-column: 1/-1;">Seu carrinho está vazio.</p>`;
-        atualizarTotais(0);
+        atualizarTotais(0, 0);
         return;
     }
 
     container.innerHTML = "";
     carrinho.forEach((item, index) => {
-        total += item.preco;
+        // Garante que o preço base segue sua nova regra (200 para retrô, 160 para outros)
+        let precoBase = (item.estilo === 'retro') ? 200 : 160;
+        subtotal += precoBase;
+
         container.innerHTML += `
             <div class="cart-item">
                 <img src="${item.foto}" alt="Produto">
                 <div class="item-info">
                     <h4>${item.nome}</h4>
                     <p>Tam: ${item.tamanho} | Nome: ${item.personalizacao.nome} | Nº: ${item.personalizacao.numero}</p>
-                    <span class="item-price">R$ ${item.preco.toFixed(2)}</span>
+                    <span class="item-price">R$ ${precoBase.toFixed(2)}</span>
                 </div>
                 <button class="btn-remove" onclick="removerItem(${index})"><i class="fas fa-trash"></i></button>
             </div>`;
     });
-    atualizarTotais(total);
+
+    atualizarTotais(subtotal, descontoGlobal);
 }
 
 function removerItem(index) {
     let carrinho = JSON.parse(localStorage.getItem('futplus_cart'));
     carrinho.splice(index, 1);
     localStorage.setItem('futplus_cart', JSON.stringify(carrinho));
+    descontoGlobal = 0; // Reseta o cupom se remover itens para evitar erro
     renderizarCarrinho();
 }
 
-function atualizarTotais(total) {
-    if(document.getElementById('subtotal-val')) document.getElementById('subtotal-val').innerText = `R$ ${total.toFixed(2)}`;
-    if(document.getElementById('total-val')) document.getElementById('total-val').innerText = `R$ ${total.toFixed(2)}`;
+function atualizarTotais(subtotal, desconto) {
+    const totalFinal = subtotal - desconto;
+    
+    // Atualiza os campos do seu HTML
+    if(document.getElementById('subtotal-val')) document.getElementById('subtotal-val').innerText = `R$ ${subtotal.toFixed(2)}`;
+    if(document.getElementById('total-val')) {
+        const el = document.getElementById('total-val');
+        el.innerText = `R$ ${totalFinal.toFixed(2)}`;
+        el.style.color = desconto > 0 ? "#39ff14" : "white";
+    }
+}
+
+function aplicarCupom() {
+    const cupomInput = document.getElementById('cupom').value.toUpperCase();
+    const carrinho = JSON.parse(localStorage.getItem('futplus_cart')) || [];
+    
+    // Filtra apenas camisas que NÃO são Retrô para a promoção
+    const itensPromo = carrinho.filter(item => item.estilo !== 'retro');
+    const qtdPromo = itensPromo.length;
+
+    if (cupomInput === "COMBO2" && qtdPromo === 2) {
+        // 2 camisas de 160 = 320. Para chegar em 230, desconto de 90.
+        descontoGlobal = 90;
+        alert("✅ Cupom COMBO2 aplicado! Valor base: R$ 230,00");
+    } 
+    else if (cupomInput === "COMBO3" && qtdPromo >= 3) {
+        // 3 camisas de 160 = 480. Para chegar em 330, desconto de 150.
+        descontoGlobal = 150;
+        alert("✅ Cupom COMBO3 aplicado! Valor base: R$ 330,00");
+    } 
+    else {
+        alert("❌ Cupom inválido para esses itens ou quantidade. (Retrô não incluso)");
+        descontoGlobal = 0;
+    }
+    renderizarCarrinho();
 }
 
 function checkoutWhatsApp() {
     const carrinho = JSON.parse(localStorage.getItem('futplus_cart')) || [];
     if (carrinho.length === 0) return alert("Carrinho vazio!");
 
+    let subtotal = 0;
     let mensagem = "🔥 *NOVO PEDIDO - FUTPLUS* 🔥%0A%0A";
-    let total = 0;
 
     carrinho.forEach(item => {
-        mensagem += `👕 *${item.nome}*%0A📏 Tam: ${item.tamanho} | 👤 Nome: ${item.personalizacao.nome} | 🔢 Nº: ${item.personalizacao.numero}%0A💰 R$ ${item.preco.toFixed(2)}%0A%0A`;
-        total += item.preco;
+        let precoItem = (item.estilo === 'retro') ? 200 : 160;
+        mensagem += `👕 *${item.nome}*%0A📏 Tam: ${item.tamanho}%0A👤 Nome: ${item.personalizacao.nome} | 🔢 Nº: ${item.personalizacao.numero}%0A💰 R$ ${precoItem.toFixed(2)}%0A%0A`;
+        subtotal += precoItem;
     });
 
-    mensagem += `*TOTAL: R$ ${total.toFixed(2)}*`;
+    const totalFinal = subtotal - descontoGlobal;
+    if (descontoGlobal > 0) mensagem += `*Desconto Cupom:* -R$ ${descontoGlobal.toFixed(2)}%0A`;
+    mensagem += `*TOTAL FINAL: R$ ${totalFinal.toFixed(2)}*`;
+
     window.open(`https://wa.me/5511980177729?text=${mensagem}`, '_blank');
-}
-
-let descontoAplicado = 0; // Variável global para controlar o desconto
-
-function aplicarCupom() {
-    const cupomInput = document.getElementById('cupom').value.toUpperCase();
-    const subtotal = calcularSubtotalAtual(); // Função auxiliar para pegar o valor sem desconto
-    const totalDisplay = document.getElementById('total-val');
-    
-    // Configuração dos cupons
-    const cuponsValidos = {
-        'FUT10': 0.10,      // 10% de desconto
-        'BEMVINDO': 0.15,   // 15% de desconto
-        'PRIMEIRAFUT': 20   // R$ 20,00 fixos de desconto
-    };
-
-    if (cuponsValidos[cupomInput]) {
-        let valorDesconto = cuponsValidos[cupomInput];
-        
-        // Verifica se o desconto é percentual ou fixo
-        if (valorDesconto < 1) {
-            descontoAplicado = subtotal * valorDesconto;
-        } else {
-            descontoAplicado = valorDesconto;
-        }
-
-        const novoTotal = subtotal - descontoAplicado;
-        
-        // Atualiza a tela
-        totalDisplay.innerText = `R$ ${novoTotal.toFixed(2)}`;
-        totalDisplay.style.color = "#39ff14"; // Fica verde neon para destacar
-        
-        alert(`✅ Cupom ${cupomInput} aplicado! Desconto de R$ ${descontoAplicado.toFixed(2)}`);
-    } else {
-        alert("❌ Cupom inválido ou expirado.");
-        descontoAplicado = 0;
-        renderizarCarrinho(); // Reseta para o valor original
-    }
-}
-
-// Função auxiliar para calcular o total bruto dos itens no localStorage
-function calcularSubtotalAtual() {
-    const carrinho = JSON.parse(localStorage.getItem('futplus_cart')) || [];
-    return carrinho.reduce((acc, item) => acc + item.preco, 0);
-}
-
-function calcularFreteCarrinho() {
-    const cep = document.getElementById('cep-cart').value;
-    const resultado = document.getElementById('result-cart');
-
-    if (cep.length < 8) return alert("CEP inválido");
-
-    resultado.style.display = 'block';
-    resultado.innerHTML = `<i class="fas fa-check"></i> Frete <b>GRÁTIS</b> para sua região!`;
 }

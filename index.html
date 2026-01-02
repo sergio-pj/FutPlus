@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FutPlus | Camisas de Time Premium</title>
     <link rel="icon" type="image/png" href="img_roles/F (1).png">
-    <link rel="stylesheet" href="Styles/global.css">
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Styles/global.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -24,16 +24,17 @@
                 <li><a href="contato.html">Contato</a></li>
             </ul>
 
-            <div class="header-right">
-                <button class="btn-add-cart" onclick="adicionarAoCarrinho()">
-    <i class="fas fa-cart-plus"></i> ADICIONAR AO CARRINHO
-</button>
-            </div>
+           <div class="cart-container">
+    <a href="carrinho.html" class="cart-icon-link">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count">0</span>
+    </a>
+</div>
         </nav>
     </header>
 
     <main>
-        <section class="hero" style="--bg-mobile: url('img_roles/Banner_celular.webp');">
+        <section class="hero" style="--bg-mobile: url('img_roles/banner1.png');">
     <div class="hero-content">
         <a href="https://wa.me/5511980177729" class="btn-neon">CHAMAR NO WHATSAPP</a>
     </div>
@@ -63,8 +64,8 @@
                         <span class="category">BRASILEIRÃO / 24-25</span>
                         <h3>Camisa Corinthians</h3>
                         <div class="rating">⭐⭐⭐⭐⭐ (48)</div>
-                        <p class="price">R$ 140,00 <span class="old-price">R$ 160,00</span></p>
-                        <a href="produto_detalhes.html" class="btn-buy-now">VER DETALHES</a>
+                        <p class="price">R$ 160,00 <span class="old-price">R$ 180,00</span></p>
+                        <a href="html/manto-corinthians.html" class="btn-buy-now">VER DETALHES</a>
                     </div>
                 </div>
 
@@ -79,8 +80,8 @@
                         <span class="category">SELEÇÕES / RETRÔ</span>
                         <h3>Camisa Brasil Azul 04/05</h3>
                         <div class="rating">⭐⭐⭐⭐⭐ (48)</div>
-                        <p class="price">R$ 180,00 <span class="old-price">R$ 200,00</span></p>
-                        <a href="produto_detalhes.html" class="btn-buy-now">VER DETALHES</a>
+                        <p class="price">R$ 200,00 <span class="old-price">R$ 220,00</span></p>
+                        <a href="html/manto-brasil-retro.html" class="btn-buy-now">VER DETALHES</a>
                     </div>
                 </div>
 
@@ -95,8 +96,8 @@
                         <span class="category">EUROPA / ESPANHA</span>
                         <h3>Camisa Real Madrid Third</h3>
                         <div class="rating">⭐⭐⭐⭐⭐ (55)</div>
-                        <p class="price">R$ 140,00 <span class="old-price">R$ 160,00</span></p>
-                        <a href="produto_detalhes.html" class="btn-buy-now">VER DETALHES</a>
+                        <p class="price">R$ 160,00 <span class="old-price">R$ 180,00</span></p>
+                        <a href="html/manto-real-madrid.html" class="btn-buy-now">VER DETALHES</a>
                     </div>
                 </div>
             </div>
@@ -139,7 +140,7 @@
                 <ul>
                     <li><a href="sobre.html">Quem Somos</a></li>
                     <li><a href="contato.html">Contato</a></li>
-                    <li><a href="#">Envio e Prazo</a></li>
+                    <li><a href="envio.html">Envio e Prazo</a></li>
                 </ul>
             </div>
             <div class="footer-box">

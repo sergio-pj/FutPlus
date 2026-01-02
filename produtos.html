@@ -16,7 +16,6 @@
             <div class="logo"><a href="index.html">FUT<span>PLUS</span></a></div>
             <ul class="nav-links">
                 <li><a href="index.html">Início</a></li>
-                <li><a href="produtos.html" class="active">Produtos</a></li>
                 <li><a href="sobre.html">Sobre Nós</a></li>
                 <li><a href="contato.html">Contato</a></li>
             </ul>
@@ -33,74 +32,78 @@
         </header>
 
         <div class="catalog-layout">
-            <aside class="filters-sidebar">
-                <div class="filter-section">
-                    <h3>Filtrar por Estilo</h3>
-                    <label><input type="checkbox"> Brasileirão</label>
-                    <label><input type="checkbox"> Europeus</label>
-                    <label><input type="checkbox"> Retrô</label>
-                    <label><input type="checkbox"> Seleções</label>
-                </div>
+            <button id="btn-toggle-filtros" class="mobile-only-btn">
+    <i class="fas fa-filter"></i> FILTRAR PRODUTOS
+</button>
 
-                <div class="filter-section">
-                    <h3>Filtrar por Preço</h3>
-                    <select class="input-custom">
-                        <option>Todos os Preços</option>
-                        <option>Até R$ 150</option>
-                        <option>Acima de R$ 150</option>
-                    </select>
-                </div>
-                
-                <button class="btn-neon">APLICAR FILTROS</button>
-            </aside>
+<aside class="filters-sidebar" id="sidebar-filtros">
+    <div class="filter-section">
+        <h3>Filtrar por Estilo</h3>
+        <label><input type="checkbox"> Brasileirão</label>
+        <label><input type="checkbox"> Europeus</label>
+        <label><input type="checkbox"> Retrô</label>
+        <label><input type="checkbox"> Seleções</label>
+    </div>
+
+    <div class="filter-section">
+        <h3>Filtrar por Preço</h3>
+        <select class="input-custom">
+            <option>Todos os Preços</option>
+            <option>Até R$ 180</option>
+            <option>Acima de R$ 180</option>
+        </select>
+    </div>
+    
+    <button class="btn-apply-filters">APLICAR FILTROS</button>
+</aside>
 
             <section class="products-grid">
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="Destaques/Corinthians_modelo1.png" alt="Camisa Corinthians">
-                        <span class="badge-card">-15% OFF</span>
-                    </div>
-                    <div class="product-info">
-                        <span class="category">BRASILEIRÃO / RETRÔ</span>
-                        <h4>Camisa Corinthians Jogador 24/25</h4>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(48)</span>
-                        </div>
-                        <p class="price">R$ 140,00 <span class="old-price">R$ 180,00</span></p>
-                        <a href="produto_detalhes.html" class="btn-details">VER DETALHES</a>
-                    </div>
-                </div>
+    <div class="product-card" data-estilo="brasileirao" data-preco="160">
+        <div class="product-img">
+            <img src="Destaques/Corinthians_modelo1.png" alt="Camisa Corinthians">
+            <span class="badge-card">-15% OFF</span>
+        </div>
+        <div class="product-info">
+            <span class="category">BRASILEIRÃO</span>
+            <h4>Camisa Corinthians Jogador 24/25</h4>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(48)</span>
+            </div>
+            <p class="price">R$ 160,00 <span class="old-price">R$ 180,00</span></p>
+            <a href="produto_detalhes.html" class="btn-details">VER DETALHES</a>
+        </div>
+    </div>
 
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="Destaques/RealMadri_Third KitAdidas1.png" alt="Camisa Real Madrid">
-                    </div>
-                    <div class="product-info">
-                        <span class="category">EUROPA / ESPANHA</span>
-                        <h4>Camisa Real Madrid Home 24/25 Third</h4>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(55)</span>
-                        </div>
-                        <p class="price">R$ 140,00</p>
-                        <a href="produto_detalhes.html" class="btn-details">VER DETALHES</a>
-                    </div>
-                </div>
+    <div class="product-card" data-estilo="europeus" data-preco="160">
+        <div class="product-img">
+            <img src="Destaques/RealMadri_Third KitAdidas1.png" alt="Camisa Real Madrid">
+        </div>
+        <div class="product-info">
+            <span class="category">EUROPA / ESPANHA</span>
+            <h4>Camisa Real Madrid Home 24/25 Third</h4>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(55)</span>
+            </div>
+            <p class="price">R$ 160,00</p>
+            <a href="produto_detalhes.html" class="btn-details">VER DETALHES</a>
+        </div>
+    </div>
 
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="Destaques/Brasil_2004&2005_retro_azul1.png" alt="Camisa Real Madrid">
-                    </div>
-                    <div class="product-info">
-                        <span class="category">EUROPA / ESPANHA</span>
-                        <h4>Camisa Retrô Brasil 2005/2005</h4>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(55)</span>
-                        </div>
-                        <p class="price">R$ 140,00</p>
-                        <a href="produto_detalhes.html" class="btn-details">VER DETALHES</a>
-                    </div>
-                </div>
-            </section>
+    <div class="product-card" data-estilo="retro selecoes" data-preco="200">
+        <div class="product-img">
+            <img src="Destaques/Brasil_2004&2005_retro_azul1.png" alt="Camisa Brasil">
+        </div>
+        <div class="product-info">
+            <span class="category">SELEÇÕES / RETRÔ</span>
+            <h4>Camisa Retrô Brasil 2005/2005</h4>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(55)</span>
+            </div>
+            <p class="price">R$ 200,00</p>
+            <a href="manto-brasil-retro.html" class="btn-details">VER DETALHES</a>
+        </div>
+    </div>
+</section>
         </div>
     </main>
 

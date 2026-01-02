@@ -61,16 +61,17 @@ nav ul li a:hover {
 
 /* Seção Hero (Banner) */
 .hero {
-    height: 85vh;
-    background: url('img_roles/banner1.png'); 
-    background-size: cover;
-    background-position: center;
+    min-height: 85vh; /* Usa min-height em vez de height fixo */
+    background-image: url('img_roles/banner1.png'); 
+    background-size: contain; /* Tenta 'contain' se não quiser cortes, ou mantenha 'cover' para preencher tudo */
+    background-repeat: no-repeat;
+    background-position: center bottom; /* Garante que o chão da imagem (onde o botão fica) apareça */
     display: flex;
     flex-direction: column;
+    justify-content: flex-end; 
     align-items: center;
-    justify-content: flex-end; /* Alinha o conteúdo (botão) para o final da seção */
-    padding-bottom: 50px; /* Distância do botão em relação ao fim da imagem */
-    text-align: center;
+    padding-bottom: 50px;
+    width: 100%;
 }
 
 .hero h1 {
@@ -465,6 +466,36 @@ tr:hover {
 
 .customization-fields {
     margin-top: 15px;
+}
+
+.cart-container {
+    position: relative;
+    padding: 10px;
+}
+
+.cart-icon-link {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    position: relative;
+    transition: 0.3s;
+}
+
+.cart-icon-link:hover {
+    color: #00ff00; /* Verde neon da sua marca */
+}
+
+#cart-count {
+    background-color: #00ff00;
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
 /* ==========================================================================

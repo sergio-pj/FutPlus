@@ -1,7 +1,7 @@
 /* 1. Importação da Fonte Oficial */
 @font-face {
-    font-family: 'Corinthians2024';
-    src: url('../Fonts_Corinthians/Corinthians/Letras/Corinthians 2024 Tipografstore.ttf') format('truetype');
+    font-family: 'BrasilRetro';
+    src: url('../Fonts_Corinthians/Team-Athletics-Freeware.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -11,14 +11,14 @@
     --dark-bg: #0a0a0a;
     --card-bg: #141414;
     --border-color: #222;
-    --corinthians-orange: #ff6600;
+    --brasil-branco: #ffffff; /* MUDADO PARA BRANCO */
 }
 
 body {
     background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
     margin: 0;
     color: white;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'BrasilRetro', sans-serif;
     line-height: 1.6;   
 }
 
@@ -54,28 +54,30 @@ body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%); /* Apenas centraliza, sem scale */
-    font-family: 'Corinthians2024', sans-serif !important;
+    font-family: 'BrasilRetro', sans-serif !important;
     text-transform: uppercase;
-    color: var(--corinthians-orange) !important;
+    color: var(--brasil-branco) !important;
     pointer-events: none;
     text-align: center;
     white-space: nowrap;
     z-index: 10;
     margin-top: -20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .text-overlay-numero {
     position: absolute;
     left: 50%;
     transform: translateX(-50%); /* Apenas centraliza, sem scale */
-    font-family: 'Corinthians2024', sans-serif !important;
+    font-family: 'BrasilRetro', sans-serif !important;
     text-transform: uppercase;
-    color: var(--corinthians-orange) !important;
+    color: var(--brasil-branco) !important;
     pointer-events: none;
     text-align: center;
     white-space: nowrap;
     z-index: 10;
     margin-top: -25px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .text-overlay-nome { top: 22%; font-size: 1.6rem; letter-spacing: 1px; }
@@ -84,6 +86,21 @@ body {
 /* 5. Detalhes do Produto */
 .text-overlay-nome { top: 22%; font-size: 1.6rem; letter-spacing: 1px; }
 .text-overlay-numero { top: 32%; font-size: 6.5rem; font-weight: bold; }
+
+/* 3. Estilo para o Frete (Adicione ao final do arquivo) */
+.shipping-box {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    margin-top: 20px;
+}
+
+.shipping-input-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
 
 #total-price {
     font-size: 2.6rem;
@@ -392,9 +409,11 @@ body {
     background: #39ff14;
     color: #000;
     border: none;
-    font-weight: 9;
+    font-weight: 900;
     font-size: 0.9rem;
-    border-radius: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 /* --- RODAPÉ UNIFICADO --- */
@@ -465,6 +484,97 @@ body {
     margin-top: 50px;
     padding-top: 20px;
     border-top: 1px solid #111;
+}
+
+/* Alinha Nome e Número lado a lado */
+.personalization-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1; /* Faz os dois campos dividirem o espaço */
+}
+
+.input-box label {
+    font-size: 0.9rem;
+    color: #888;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.input-custom {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: white;
+}
+
+.personalization-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    width: 100%; 
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    flex: 3; /* Nome ganha mais espaço */
+}
+
+.input-field.num {
+    flex: 1; /* Número fica menor */
+}
+
+.input-field label {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+/* Estilo dos Inputs */
+.input-custom {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.input-custom:focus {
+    border-color: #39ff14;     /* Brilho verde ao clicar */
+    outline: none;
+}
+
+/* Isso vai garantir que o texto dentro do SVG fique branco */
+svg text {
+    fill: #ffffff !important;
+}
+
+/* Caso você queira garantir pelas IDs específicas */
+#preview-nome {
+    fill: #2B59C3 !important;
+    font-family: 'BrasilRetro', sans-serif !important;
+    letter-spacing: 2px;
+    font-size: 30px;
+}
+
+#preview-numero {
+    fill: #ffffff !important; /* Número continua branco */
+    /* Se quiser o contorno preto sutil da foto: */
+    stroke: rgba(0,0,0,0.2);
+    stroke-width: 2px;
 }
 
 /* --- AJUSTE RESPONSIVO DO RODAPÉ --- */
