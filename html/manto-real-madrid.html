@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutPlus | Detalhes</title>
-    <link rel="icon" type="image/png" href="img_roles/F (1).png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../Styles/detalhes.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FutPlus | Real Madrid Home 24/25</title>
+  <link rel="icon" type="image/png" href="../img_roles/F (1).png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Styles/global.css">
+  <link rel="stylesheet" href="../Styles/detalhes.css">
 </head>
-
 <body>
-    <header class="main-header">
+  <header class="main-header">
         <nav class="nav-container">
             <div class="logo">
-                <a href="index.html">FUT<span>PLUS</span></a>
+                <a href="../index.html">FUT<span>PLUS</span></a>
             </div>
             
             <ul class="nav-links">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="produtos.html" class="active">Produtos</a></li>
-                <li><a href="sobre.html">Sobre Nós</a></li>
-                <li><a href="contato.html">Contato</a></li>
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="../produtos.html">Produtos</a></li>
+                <li><a href="../sobre.html">Sobre Nós</a></li>
+                <li><a href="../contato.html">Contato</a></li>
             </ul>
 
             <div class="header-right">
-                <a href="carrinho.html" class="cart-icon"> <i class="fas fa-shopping-cart"></i>
+                <a href="../carrinho.html" class="cart-icon"> <i class="fas fa-shopping-cart"></i>
                     <span id="cart-count">0</span>
                 </a>
             </div>
@@ -34,36 +34,50 @@
 
     <main class="product-page">
         <div class="image-container">
-            <img src="COSTAS LISA/Corinthians_costasLisa.png" id="camisa-base">
-            
-            <div id="preview-nome" class="text-overlay-nome">NOME</div>
-            <div id="preview-numero" class="text-overlay-numero">00</div>
+            <div class="main-image" style="position: relative;">
+                <img src="../Destaques/RealMadri_Third KitAdidas1.png" id="camisa-base" alt="Real Madrid">
+                
+                <svg viewBox="0 0 500 500" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+    <path id="curve" d="M100,230 Q250,65 400,230" fill="transparent" />
+    
+    <text font-family="'BrasilRetro', sans-serif" font-size="32" fill="white" font-weight="bold">
+        <textPath xlink:href="#curve" startOffset="50%" text-anchor="middle" id="preview-nome">
+            NOME
+        </textPath>
+    </text>
 
+    <text x="50%" y="320" text-anchor="middle" font-family="'BrasilRetro', sans-serif" font-size="150" fill="white" font-weight="bold" id="preview-numero">
+        10
+    </text>
+</svg>
+            </div>
+            
             <div class="thumbnail-container">
-                 <img src="Destaques/Corinthians_modelo1.png" class="thumb" onclick="trocarFoto('Destaques/Corinthians_modelo1.png', false)">
-                 <img src="COSTAS LISA/Corinthians_costasLisa.png" class="thumb" onclick="trocarFoto('COSTAS LISA/Corinthians_costasLisa.png', true)">
+                 <img src="../Destaques/RealMadri_Third KitAdidas1.png" class="thumb" onclick="trocarFoto(this.src, false)">
+                 <img src="../COSTAS LISA/PERSONALIZE AQUI.png" class="thumb" onclick="trocarFoto(this.src, true)">
             </div>
         </div>
 
         <div class="product-details">
             <span class="category">EUROPA / ESPANHA</span>
-<h1>Camisa Real Madrid Third</h1>
+            <h1>Camisa Real Madrid Home 24/25 Third</h1>
 
-<div class="product-price">
-    <span id="total-price">R$ 140,00</span>
-    <p class="custom-hint">Nome no Dorso (+ R$ 20,00)</p>
-</div>
+            <div class="product-price">
+                <span id="total-price">R$ 140,00</span>
+                <p class="custom-hint">Nome no Dorso (+ R$ 20,00)</p>
+            </div>
 
-<div class="main-image">
-    <img src="Destaques/RealMadri_Third KitAdidas1.png" id="camisa-base" alt="Real Madrid">
-</div>
-<div class="thumb-container">
-    <img src="Destaques/RealMadri_Third KitAdidas1.png" onclick="trocarFoto(this.src, false)">
-    <img src="Destaques/RealMadrid_Adidas_costaspersonalizável1.png" onclick="trocarFoto(this.src, true)">
-</div>
+            <div class="personalization-container">
+                <div class="input-field">
+                    <label>Nome:</label>
+                    <input type="text" id="input-nome" class="input-custom" placeholder="EX: SERGIO" maxlength="9" oninput="atualizarTudo()">
+                </div>
+                <div class="input-field num">
+                    <label>Número:</label>
+                    <input type="text" id="input-numero" class="input-custom" placeholder="10" maxlength="2" oninput="atualizarTudo()">
+                </div>
+            </div>
 
-            <input type="hidden" id="tamanho-selecionado" value="">
-            
             <label class="label-personaliza">Escolha o Tamanho:</label>
             <div class="sizes">
                 <button type="button" class="size-btn" onclick="selecionarTamanho('P', this)">P</button> 
@@ -71,22 +85,26 @@
                 <button type="button" class="size-btn" onclick="selecionarTamanho('G', this)">G</button>
                 <button type="button" class="size-btn" onclick="selecionarTamanho('GG', this)">GG</button>
             </div>
-            <div class="shipping-box">
-                    <label class="label-personaliza"><i class="fas fa-truck"></i> Calcular Frete</label>
-                <div class="shipping-input-group">
-                    <input type="text" id="cep-input" class="input-custom" placeholder="00000-000" maxlength="9">
+
+                <input type="hidden" id="tamanho-selecionado" value="">
+
+            <div class="shipping-box" style="margin-top: 20px;">
+                <label class="label-personaliza"><i class="fas fa-truck"></i> Calcular Frete</label>
+                <div class="shipping-input-group" style="display: flex; gap: 10px; margin-top: 10px;">
+                    <input type="text" id="cep-input" class="input-custom" placeholder="00000-000" style="flex: 1;">
                     <button class="btn-calc-shipping" onclick="calcularFrete()">OK</button>
                 </div>
-                    <div id="shipping-result" class="shipping-result"></div>
-</div>
-        <div class="purchase-actions">
-            <button class="btn-buy" onclick="comprarAgoraDireto()">
-                <i class="fas fa-bolt"></i> COMPRAR AGORA
-            </button>
+                <div id="shipping-result" style="margin-top: 10px; color: #39ff14; font-size: 0.9rem;"></div>
+            </div>
 
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho()">
-                <i class="fas fa-cart-plus"></i> ADICIONAR AO CARRINHO
-            </button>
+            <div class="purchase-actions" style="margin-top: 30px;">
+                <button class="btn-buy" onclick="comprarAgoraDireto()">
+                    <i class="fas fa-bolt"></i> COMPRAR AGORA
+                </button>
+                <button class="btn-add-cart" onclick="adicionarAoCarrinho()">
+                    <i class="fas fa-cart-plus"></i> ADICIONAR AO CARRINHO
+                </button>
+            </div>
         </div>
     </main>
 
@@ -135,10 +153,10 @@
         <div class="footer-box">
             <h4>Links Úteis</h4>
             <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="sobre.html">Quem Somos</a></li>
-                <li><a href="contato.html">Contato</a></li>
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="../produtos.html">Produtos</a></li>
+                <li><a href="../sobre.html">Quem Somos</a></li>
+                <li><a href="../contato.html">Contato</a></li>
             </ul>
         </div>
 
@@ -165,6 +183,7 @@
     </div>
 </footer>
 
-    <script src="JS/script.js"></script>
+    <script src="../JS/cep.js"></script>
+    <script src="../JS/detalhes_destaques.js"></script>
 </body>
 </html>

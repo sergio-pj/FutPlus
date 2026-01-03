@@ -2,43 +2,111 @@
 // 1. FUNÇÕES ORIGINAIS (PRESERVAR TUDO)
 // ==========================================
 
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
     atualizarTudo();
     atualizarContador();
     carregarProdutos(); // Acrescentamos apenas esta chamada
+    verificarIdProduto();
 });
+
+// Verifica se estamos na página de detalhes e carrega o produto do JSON pelo ID
+async function verificarIdProduto() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const containerDetalhes = document.querySelector('.product-page');
+
+    if (id && containerDetalhes) {
+        try {
+            const resposta = await fetch('JS/produtos.json');
+            const produtos = await resposta.json();
+            const produto = produtos.find(p => p.id == id);
+            if (produto) preencherDadosProduto(produto);
+        } catch (erro) {
+            console.error("Erro ao carregar detalhes:", erro);
+        }
+    }
+}
+
+function preencherDadosProduto(p) {
+    // salva produto globalmente para outras funções usarem
+    window.produtoAtual = p;
+
+    if(document.querySelector('h1')) document.querySelector('h1').innerText = p.nome;
+
+    // garante elemento .category (cria se não existir)
+    let catEl = document.querySelector('.category');
+    if (!catEl) {
+        catEl = document.createElement('span');
+        catEl.className = 'category';
+        const priceEl = document.getElementById('total-price');
+        if (priceEl && priceEl.parentNode) priceEl.parentNode.insertBefore(catEl, priceEl);
+        else document.querySelector('.product-details')?.prepend(catEl);
+    }
+    catEl.innerText = p.categoria;
+
+    const displayPreco = document.getElementById('total-price');
+    if(displayPreco) displayPreco.innerText = `R$ ${p.preco.toFixed(2).replace('.', ',')}`;
+
+    const imgBase = document.getElementById('camisa-base');
+    if(imgBase) {
+        imgBase.src = p.foto;
+        imgBase.setAttribute('data-frente', p.foto); 
+    }
+
+    // Seleciona as miniaturas (thumbs)
+    const thumbs = document.querySelectorAll('.thumb');
+    if(thumbs.length >= 2) {
+        // Configura a miniatura da FRENTE
+        thumbs[0].src = p.foto;
+        thumbs[0].onclick = () => trocarFoto(p.foto, false);
+        
+        // Configura a miniatura das COSTAS (usando o novo campo do JSON)
+        thumbs[1].src = p.fotoCostas || p.foto; // Se não tiver foto costas, repete a frente
+        thumbs[1].onclick = () => trocarFoto(p.fotoCostas, true);
+    }
+    
+    // IMPORTANTE: Garante que o nome/número comece escondido (frente)
+    const previewNome = document.getElementById('preview-nome');
+    const previewNumero = document.getElementById('preview-numero');
+    if(previewNome) previewNome.style.display = 'none';
+    if(previewNumero) previewNumero.style.display = 'none';
+
+    atualizarTudo();
+}
+
+function normalizeText(s) {
+    return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
 
 function atualizarTudo() {
     const displayPreco = document.getElementById('total-price');
-    const categoria = document.querySelector('.category').innerText.toLowerCase();
-    const inputNome = document.getElementById('input-nome').value.trim();
-    
-    // Define o preço base (Retrô 200, outros 160)
-    let precoComPersonalizacao = categoria.includes('retro') ? 200 : 160;
-    let precoSemPersonalizacao = precoComPersonalizacao - 20;
+    const categoriaEl = document.querySelector('.category') || document.querySelector('.badge-new');
+    const inputNome = document.getElementById('input-nome');
+    if (!displayPreco || !categoriaEl || !inputNome) return;
 
-    if (displayPreco) {
-        if (inputNome !== "") {
-            displayPreco.innerText = `R$ ${precoComPersonalizacao.toFixed(2).replace('.', ',')}`;
-        } else {
-            displayPreco.innerText = `R$ ${precoSemPersonalizacao.toFixed(2).replace('.', ',')}`;
-        }
+    const nomeTexto = inputNome.value.trim();
+    // usa produtoAtual quando disponível
+    const categoria = window.produtoAtual?.categoria ? normalizeText(window.produtoAtual.categoria) : normalizeText(categoriaEl.innerText);
+    const precoBase = window.produtoAtual?.preco ? Number(window.produtoAtual.preco) : (categoria.includes('retro') ? 180 : 140);
+
+    if (nomeTexto !== "") {
+        displayPreco.innerText = `R$ ${(precoBase + 20).toFixed(2).replace('.', ',')}`;
+    } else {
+        displayPreco.innerText = `R$ ${precoBase.toFixed(2).replace('.', ',')}`;
     }
+    atualizarPreview();
 }
 
 function trocarFoto(src, isCostas) {
     const imgBase = document.getElementById('camisa-base');
     const nome = document.getElementById('preview-nome');
     const numero = document.getElementById('preview-numero');
+    
     if(imgBase) imgBase.src = src;
+    
+    // Voltando sua lógica original de display
     if(nome) nome.style.display = isCostas ? 'block' : 'none';
     if(numero) numero.style.display = isCostas ? 'block' : 'none';
-}
-
-function selecionarTamanho(tamanho, elemento) {
-    document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
-    elemento.classList.add('active');
-    document.getElementById('tamanho-selecionado').value = tamanho;
 }
 
 function adicionarAoCarrinho() {
@@ -46,44 +114,46 @@ function adicionarAoCarrinho() {
     const inputNomeEl = document.getElementById('input-nome');
     const inputNumeroEl = document.getElementById('input-numero');
     const tamanhoEl = document.getElementById('tamanho-selecionado');
-    const estiloEl = document.querySelector('.category');
-    
-    // CAPTURA A FOTO ATUAL DA CAMISA
+    const estiloEl = document.querySelector('.category') || document.querySelector('.badge-new');
     const imgBase = document.getElementById('camisa-base');
-    const fotoCamisa = imgBase ? imgBase.getAttribute('src') : ""; 
 
     if (!tamanhoEl || !tamanhoEl.value) {
         alert("⚠️ Por favor, selecione um tamanho!");
         return;
     }
 
+    const fotoPrincipal = imgBase.getAttribute('data-frente') || imgBase.src;
+    const categoriaTexto = window.produtoAtual?.categoria ? normalizeText(window.produtoAtual.categoria) : normalizeText(estiloEl ? estiloEl.innerText : '');
+    const eRetro = categoriaTexto.includes('retro');
+    const precoSalvar = window.produtoAtual?.preco ? Number(window.produtoAtual.preco) : (eRetro ? 180 : 140);
+
     const item = {
         nome: tituloEl ? tituloEl.innerText : "Produto",
-        preco: (estiloEl && estiloEl.innerText.toLowerCase().includes('retro')) ? 200 : 160,
-        foto: fotoCamisa, // SALVA O CAMINHO DA IMAGEM AQUI
-        estilo: (estiloEl && estiloEl.innerText.toLowerCase().includes('retro')) ? 'retro' : 'outros',
+        preco: precoSalvar,
+        foto: fotoPrincipal, 
+        estilo: eRetro ? 'retro' : 'outros',
         tamanho: tamanhoEl.value,
         personalizacao: { 
-            nome: inputNomeEl.value.toUpperCase() || "Sem nome", 
-            numero: inputNumeroEl.value || "00" 
-        }
+            nome: inputNomeEl.value.toUpperCase() || "", 
+            numero: inputNumeroEl.value || "" 
+        },
+        quantidade: 1
     };
 
     let carrinho = JSON.parse(localStorage.getItem('futplus_cart')) || [];
     carrinho.push(item);
     localStorage.setItem('futplus_cart', JSON.stringify(carrinho));
+    
     atualizarContador();
-    mostrarToast("Manto adicionado!");
+    mostrarToast("Manto adicionado ao carrinho!");
 }
+
 function mostrarToast(mensagem) {
     const toast = document.createElement('div');
     toast.className = 'toast-confirmacao';
     toast.innerHTML = `<i class="fas fa-check-circle"></i> ${mensagem}`;
     document.body.appendChild(toast);
-    setTimeout(() => {
-        toast.classList.add('fade-out');
-        setTimeout(() => toast.remove(), 500);
-    }, 3000);
+    setTimeout(() => toast.remove(), 3000);
 }
 
 function atualizarContador() {
@@ -92,38 +162,43 @@ function atualizarContador() {
     if (contador) contador.innerText = carrinho.length;
 }
 
+function selecionarTamanho(tamanho, elemento) {
+    document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+    elemento.classList.add('active');
+    const inputOculto = document.getElementById('tamanho-selecionado');
+    if(inputOculto) inputOculto.value = tamanho;
+}
+
 function calcularFrete() {
     const cep = document.getElementById('cep-input').value;
-    const resultado = document.getElementById('shipping-result');
-    if (cep.length < 8) { alert("Por favor, digite um CEP válido."); return; }
-    resultado.style.display = 'block';
-    resultado.innerHTML = `<p>🚚 Frete para ${cep}: <b>GRÁTIS</b></p><p>🕒 Entrega estimada: 15 a 25 dias úteis.</p>`;
+    if (!cep) { alert("Por favor, digite um CEP."); return; }
+    // usa a função central em JS/cep.js
+    calcularFretePorCep(cep).catch(err => console.error(err));
 }
 
 function checkoutExpresso() {
-    const tamanho = document.getElementById('tamanho-selecionado').value;
-    if (!tamanho) { alert("⚠️ Por favor, selecione um tamanho antes de comprar!"); return; }
+    const tamanhoEl = document.getElementById('tamanho-selecionado');
+    if (!tamanhoEl || !tamanhoEl.value) { alert("⚠️ Selecione um tamanho!"); return; }
     adicionarAoCarrinho();
     window.location.href = "carrinho.html";
 }
 
 function comprarAgoraDireto() {
-    const tamanho = document.getElementById('tamanho-selecionado').value;
+    const tamanhoEl = document.getElementById('tamanho-selecionado');
+    if (!tamanhoEl || !tamanhoEl.value) { alert("⚠️ Selecione um tamanho!"); return; }
+
     const nome = document.getElementById('input-nome').value.toUpperCase();
     const numero = document.getElementById('input-numero').value;
     const preco = document.getElementById('total-price').innerText;
     const produtoNome = document.querySelector('h1').innerText;
 
-    if (!tamanho) { alert("⚠️ Por favor, selecione um tamanho!"); return; }
-
     let mensagem = `🔥 *COMPRA RÁPIDA - FUTPLUS* 🔥%0A%0A`;
     mensagem += `👕 *Produto:* ${produtoNome}%0A`;
-    mensagem += `📏 *Tamanho:* ${tamanho}%0A`;
+    mensagem += `📏 *Tamanho:* ${tamanhoEl.value}%0A`;
     mensagem += `👤 *Personalização:* ${nome || 'Sem nome'} (${numero || '00'})%0A`;
     mensagem += `💰 *Valor:* ${preco}%0A%0A_Gostaria de finalizar o pagamento agora!_`;
 
-    const fone = "5511980177729";
-    window.open(`https://wa.me/${fone}?text=${mensagem}`, '_blank');
+    window.open(`https://wa.me/5511980177729?text=${mensagem}`, '_blank');
 }
 
 // ==========================================
@@ -186,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function carregarProdutos() {
     const grid = document.querySelector('.products-grid');
-    if (!grid) return; // Se não estiver na página de produtos, não faz nada
+    if (!grid) return;
 
     try {
         const resposta = await fetch('JS/produtos.json');
@@ -205,42 +280,23 @@ async function carregarProdutos() {
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(50)</span>
                     </div>
                     <p class="price">R$ ${p.preco.toFixed(2).replace('.', ',')}</p>
-                    <a href="${p.link}" class="btn-details">VER DETALHES</a>
+                    <a href="produto_detalhes.html?id=${p.id}" class="btn-details">VER DETALHES</a>
                 </div>
             </div>
         `).join('');
     } catch (erro) {
-        console.log("Aviso: Arquivo JSON não encontrado ou erro no fetch. Mantendo HTML fixo.");
+        console.error("Erro ao carregar vitrine:", erro);
     }
 }
 
 function atualizarPreview() {
-    // 1. Pega os valores dos inputs de texto
     const nomeInput = document.getElementById('input-nome');
     const numeroInput = document.getElementById('input-numero');
-
-    const nome = nomeInput ? nomeInput.value.toUpperCase() : "";
-    const numero = numeroInput ? numeroInput.value : "";
-
-    // 2. Pega os elementos que estão DENTRO do SVG na camisa
     const previewNome = document.getElementById('preview-nome');
     const previewNumero = document.getElementById('preview-numero');
 
-    // 3. Aplica o texto usando textContent (específico para SVG)
-    if (previewNome) {
-        // Se o campo estiver vazio, volta para "NOME"
-        previewNome.textContent = nome || "NOME";
-    }
-    
-    if (previewNumero) {
-        // Se o campo estiver vazio, volta para "10" (ou 00)
-        previewNumero.textContent = numero || "10";
-    }
-
-    // 4. Chama a sua função de preço para atualizar o valor total (+ R$ 20,00)
-    if (typeof atualizarTudo === "function") {
-        atualizarTudo();
-    }
+    if (previewNome && nomeInput) previewNome.innerText = nomeInput.value.toUpperCase() || "NOME";
+    if (previewNumero && numeroInput) previewNumero.innerText = numeroInput.value || "00";
 }
 
 // Opcional: Garante que ao carregar a página a camisa já mostre os padrões
