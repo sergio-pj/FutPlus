@@ -163,6 +163,75 @@ nav ul li a:hover {
     padding: 0 20px;
 }
 
+/* ================= CATEGORY HERO (IDENTIDADE VARIÁVEL) ================= */
+.category-hero {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    color: var(--branco);
+}
+
+.category-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: 1;
+}
+
+.category-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    padding: 0 20px;
+    animation: fadeUp 0.8s ease forwards;
+}
+
+.category-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.category-hero p { margin-top: 12px; opacity: .9; }
+
+.category-hero .category-hero-icon { font-size: 2.4rem; margin-bottom: 10px; opacity: .95; }
+
+/* Variations */
+.category-hero.brasileirao { background: url("img_roles/overlay-grama.png") center/cover no-repeat; }
+.category-hero.europeus { background: linear-gradient(180deg,#000,#050505); }
+.category-hero.retro { background: url("img_roles/overlay-grain.png") center/cover no-repeat; }
+
+/* ================= MICROANIMAÇÕES DOS CARDS (VARIÁVEIS POR CATEGORIA) =============== */
+.product-card { will-change: transform, opacity; }
+
+/* Brasileirão: slide curto (de baixo pra cima) */
+.brasileirao .product-card { transform: translateY(18px); opacity: 0; animation: cardInUp .55s ease forwards; }
+@keyframes cardInUp { to { transform: translateY(0); opacity: 1; } }
+.brasileirao .product-card:hover { filter: contrast(1.03); }
+
+/* Europeus: fade + scale */
+.europeus .product-card { transform: scale(.97); opacity: 0; animation: cardInScale .6s ease forwards; }
+@keyframes cardInScale { to { transform: scale(1); opacity: 1; } }
+.europeus .product-card:hover { transform: scale(1.02); }
+
+/* Retrô: fade mais lento */
+.retro .product-card { transform: translateY(8px); opacity: 0; animation: cardInSlow .75s ease forwards; }
+@keyframes cardInSlow { to { transform: translateY(0); opacity: 1; } }
+.retro .product-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.45); }
+
+/* small performance friendly stagger (applied via CSS only) */
+.product-grid .product-card:nth-child(1) { animation-delay: 0.06s; }
+.product-grid .product-card:nth-child(2) { animation-delay: 0.12s; }
+.product-grid .product-card:nth-child(3) { animation-delay: 0.18s; }
+.product-grid .product-card:nth-child(4) { animation-delay: 0.24s; }
+
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -329,6 +398,148 @@ nav ul li a:hover {
     color: #000;
     border: none;
 }
+
+/* --- Cinematic & category hero overrides (appended) --- */
+/* Make hero video darker and cinematic */
+.hero-video {
+    /* keep original sizing but add centering and limit */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: clamp(420px, 55vh, 720px);
+    overflow: hidden;
+}
+
+.bg-video {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 120%;
+    min-height: 120%;
+    object-fit: cover;
+    filter: saturate(1.05) contrast(1.02) brightness(0.6);
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.65) 80%);
+    mix-blend-mode: multiply;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: clamp(30px, 4.8vw, 64px);
+    color: #fff;
+    margin-bottom: 10px;
+    text-shadow: 0 6px 18px rgba(0,0,0,0.55);
+    letter-spacing: 0.4px;
+}
+
+.hero-subtitle {
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 20px;
+    max-width: 900px;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.45);
+}
+
+.btn-neon {
+    padding: 14px 26px;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(255,106,0,0.16), 0 2px 6px rgba(0,0,0,0.25);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.btn-neon:hover{ transform: translateY(-3px); }
+
+/* Category hero: cinematic card with poster/video and copy to the left */
+.category-hero {
+    min-height: 52vh;
+    display: grid;
+    grid-template-columns: 1fr 460px;
+    gap: 36px;
+    align-items: center;
+    padding: 56px 20px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.03));
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(2,6,23,0.06);
+}
+
+.category-hero .hero-media { border-radius: 12px; overflow: hidden; }
+.category-hero .hero-media video{ width:100%; height:100%; object-fit:cover }
+.category-hero .hero-media img.hero-poster{ width:100%; height:100%; object-fit:cover; display:block }
+.category-hero .category-hero-content { text-align: left; color: #fff }
+.category-hero .category-hero-content h1{ font-size:32px; font-weight:900 }
+.category-hero .category-hero-content p{ color: rgba(255,255,255,0.92); margin-top:12px }
+
+.category-hero.brasileirao { background-image: linear-gradient(180deg, rgba(2,6,23,0.02), rgba(255,106,0,0.02)); }
+.category-hero.europeus { background-image: linear-gradient(180deg, rgba(2,6,23,0.02), rgba(48,125,255,0.02)); }
+.category-hero.retro { background-image: linear-gradient(180deg, rgba(2,6,23,0.02), rgba(90,90,90,0.02)); }
+
+@media (max-width: 880px){
+    .category-hero { grid-template-columns: 1fr; padding: 32px 16px; text-align:center }
+    .category-hero .category-hero-content { text-align:center }
+    .hero-title{ font-size: clamp(24px,6.6vw,40px) }
+}
+
+/* ensure hero content sits above overlays */
+.hero-content, .category-hero .category-hero-content { z-index: 4 }
+
+/* subtle CTA emphasis */
+.category-hero .btn-neon { box-shadow: 0 10px 32px rgba(0,0,0,0.45); }
+
+
+/* --- Reaproveitar estilo do Sobre Nós para about-hero em páginas de categoria --- */
+.about-hero {
+    text-align: center;
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-hero h1 {
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.about-hero h1 span {
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+}
+
+.about-hero p {
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.about-cta {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(to bottom, transparent, rgba(57, 255, 20, 0.02));
+}
+
+.about-hero .btn-neon {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: var(--accent);
+    color: #000;
+    text-decoration: none;
+    font-weight: 900;
+    border-radius: 6px;
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.25);
+}
+
+@media (max-width: 768px) {
+    .about-hero { padding: 50px 20px; }
+}
+
 
 .btn-details {
     background: transparent;
