@@ -1,0 +1,17 @@
+/* Styles for login card */
+.login-main { padding: 60px 16px; max-width: 1000px; margin: 0 auto; }
+.login-card { background: #0f0f0f; border: 1px solid #1a1a1a; padding: 34px; border-radius: 12px; max-width:520px; margin: 24px auto; text-align: left; }
+.login-card h2 { text-align:center; font-size:1.6rem; margin-bottom:14px; }
+.tabs { display:flex; gap:8px; justify-content:center; margin-bottom:12px }
+.tabs button { background:transparent; color:var(--branco); border:1px solid #222; padding:8px 12px; border-radius:8px; cursor:pointer }
+.tabs button.active { background:var(--accent); color:#000; border-color:var(--accent) }
+.auth-form { display:flex; flex-direction:column; gap:10px }
+.auth-form.hidden { display:none }
+label{ font-size:0.85rem; color:var(--cinza-texto) }
+input{ background:#0b0b0b; border:1px solid #222; color:var(--branco); padding:10px 12px; border-radius:8px }
+.divider{ text-align:center; margin:14px 0; color:var(--muted) }
+.profile-area.hidden{ display:none }
+.btn{ padding:10px 16px; border-radius:8px; background:transparent; color:var(--branco); border:1px solid #333 }
+.btn-neon{ padding:12px 20px; border-radius:8px; background:var(--accent); color:#000; border:none; font-weight:800 }
+
+@media (max-width:600px){ .login-card{ margin:10px auto; padding:18px } .login-main{ padding:30px 12px } }
