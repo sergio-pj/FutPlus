@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutPlus | Retrô</title>
+    <link rel="icon" type="image/png" href="img_roles/F (1).png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Styles/global.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="nav-container" role="navigation">
+            <div class="logo"><a href="index.html">FUT<span>PLUS</span></a></div>
+            <ul class="nav-links">
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="sobre.html">Sobre Nós</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+           <div class="cart-container">
+            <a href="carrinho.html" class="cart-icon-link"><i class="fas fa-shopping-cart"></i><span id="cart-count">0</span></a>
+           </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-video">
+            <video autoplay muted loop playsinline preload="metadata" poster="Destaques/Brasil_2004&2005_retro_azul1.png" class="bg-video">
+                <source src="img_roles/retro_loop.mp4" type="video/mp4">
+                Seu navegador não suporta vídeo.
+            </video>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Retrô — Lendas & Memória</h1>
+                <p class="hero-subtitle">Quando a camisa vira lembrança e o passado inspira o presente.</p>
+                <a href="produtos.html" class="btn-neon hero-cta">VER EDIÇÕES RETRÔ</a>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <div class="section-title">
+                <h2>Épocas de Ouro</h2>
+                <p>As décadas douradas do futebol revelaram jogadores que se tornaram ícones e camisetas que hoje são peças de colecionador.</p>
+            </div>
+
+            <div class="section-title" style="margin-top:30px">
+                <h2>Lendas do Futebol</h2>
+                <p class="muted-text">Desde dribles que pararam multidões até gols que entraram para a história, celebramos as figuras que moldaram o jogo.</p>
+            </div>
+
+            <div class="section-title" style="margin-top:30px">
+                <h2>Reedições e Memória</h2>
+                <p class="muted-text">Recriar cortes, detalhes e badges é uma forma de manter viva a memória das partidas e gerações que amamos.</p>
+            </div>
+
+            <div style="max-width:900px;margin:24px auto;text-align:center;">
+                <video controls preload="metadata" style="width:100%;border-radius:8px;" poster="Destaques/Brasil_2004&2005_retro_azul1.png">
+                    <source src="img_roles/retro_clip.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo.
+                </video>
+            </div>
+
+            <div style="text-align:center; margin:40px 0;">
+                <a href="produtos.html" class="btn-details">Ver Reedições e Clássicos</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-box">
+                <h4>FUT<span>PLUS</span></h4>
+                <p>Qualidade premium e personalização oficial em cada detalhe.</p>
+            </div>
+            <div class="footer-box">
+                <h4>AJUDA</h4>
+                <ul>
+                    <li><a href="sobre.html">Quem Somos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-box">
+                <h4>PAGAMENTO</h4>
+                <div class="payment-icons"><i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-pix"></i></div>
+            </div>
+        </div>
+        <div class="copyright">&copy; 2025 FutPlus Oficial - Todos os direitos reservados.</div>
+    </footer>
+
+    <script src="JS/script.js"></script>
+    <script src="JS/futplus-namespace.js"></script>
+</body>
+</html>

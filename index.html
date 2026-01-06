@@ -13,7 +13,7 @@
 <body>
 
     <header class="main-header">
-        <nav class="nav-container">
+        <nav class="nav-container" role="navigation">
             <div class="logo">
                 <a href="index.html">FUT<span>PLUS</span></a>
             </div>
@@ -35,7 +35,7 @@
 
     <main>
             <section class="hero-video">
-    <video autoplay muted loop playsinline class="bg-video">
+    <video autoplay muted loop playsinline preload="metadata" poster="img_roles/banner_poster.jpg" class="bg-video">
         <source src="img_roles/10349052-uhd_2160_4096_25fps.mp4" type="video/mp4">
         Seu navegador não suporta vídeo.
     </video>
@@ -56,9 +56,9 @@
     </section>
 
         <section class="categories-mosaico">
-            <div class="cat-card brasuca"><span>BRASILEIRÃO</span></div>
-            <div class="cat-card europeus"><span>EUROPEUS</span></div>
-            <div class="cat-card retro"><span>RETRÔ</span></div>
+            <a href="brasileirao.html" class="cat-card brasuca"><span>BRASILEIRÃO</span></a>
+            <a href="europeus.html" class="cat-card europeus"><span>EUROPEUS</span></a>
+            <a href="retro.html" class="cat-card retro"><span>RETRÔ</span></a>
         </section>
 
         <section class="products" id="produtos">
@@ -173,5 +173,6 @@
     </footer>
 
     <script src="JS/script.js"></script>
+    <script src="JS/futplus-namespace.js"></script>
 </body>
 </html>

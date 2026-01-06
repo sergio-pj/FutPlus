@@ -176,3 +176,16 @@ function mostrarToast(mensagem) {
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 3000);
 }
+
+// Exporta funções/variáveis públicas para o namespace FutPlus (não-invasivo)
+window.FutPlus = window.FutPlus || {};
+window.FutPlus.atualizarTudo = atualizarTudo;
+window.FutPlus.atualizarPreview = atualizarPreview;
+window.FutPlus.trocarFoto = trocarFoto;
+window.FutPlus.selecionarTamanho = selecionarTamanho;
+window.FutPlus.calcularFrete = calcularFrete;
+window.FutPlus.comprarAgoraDireto = comprarAgoraDireto;
+window.FutPlus.adicionarAoCarrinho = adicionarAoCarrinho;
+window.FutPlus.atualizarContador = atualizarContador;
+window.FutPlus.mostrarToast = mostrarToast;
+window.FutPlus.fotoFrenteGlobal = fotoFrenteGlobal;

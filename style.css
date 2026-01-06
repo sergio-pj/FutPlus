@@ -12,12 +12,19 @@
     --cinza-texto: #B3B3B3;     /* Cinza para textos secundários */
     --verde-neon: #00FF5A;
     --verde-soft: rgba(0, 255, 90, 0.15);
+    --accent: #39FF14; /* alias para verde marca */
+    --muted: #888888;
+    --card-radius: 8px;
+    --gap-sm: 8px;
+    --gap-md: 16px;
+    --btn-padding: 12px 28px;
 }
+
 
 body {
     background-color: var(--preto-main);
     color: var(--branco);
-    font-family: 'Inter', sans-serif; /* Mix de fontes modernas */
+    font-family: 'Montserrat', sans-serif; /* Fonte única e consistente */
     line-height: 1.6;
 }
 
@@ -25,7 +32,7 @@ body {
    HEADER & NAVEGAÇÃO
    ========================================================================== */
 .top-bar {
-    background-color: var(--verde-neon);
+    background-color: var(--accent);
     color: #000;
     text-align: center;
     padding: 8px;
@@ -45,7 +52,7 @@ nav {
 }
 
 .nav-container {
-    max-width: 1700px;
+    max-width: 1900px;
     margin: 0 auto;
     width: 100%;
     display: flex;
@@ -61,7 +68,7 @@ nav {
 }
 
 .logo span {
-    color: var(--verde-neon);
+    color: var(--accent);
 }
 
 nav ul {
@@ -80,35 +87,40 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: var(--verde-neon);
+    color: var(--accent);
 }
 
 .hero-video {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: relative;
+    width: 100%;
+    /* Limita a altura para evitar que o hero fique gigante em monitores muito altos */
+    height: min(100vh, 900px);
+    max-height: 900px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bg-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-  z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1;
+    /* garante que o vídeo não ultrapasse a altura máxima do container */
+    max-height: 100%;
 }
 
 .hero-title {
-    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    /* Usa clamp para ajustar automaticamente entre tamanhos mínimos e máximos */
+    font-size: clamp(1.8rem, 3.5vw, 3.8rem);
     font-weight: 900;
     letter-spacing: -1px;
-    line-height: 1.1;
+    line-height: 1.05;
     margin-bottom: 14px;
     text-transform: uppercase;
 }
@@ -130,8 +142,8 @@ nav ul li a:hover {
 
 /* CTA */
 .hero-cta {
-    font-size: 0.95rem;
-    padding: 16px 42px;
+    font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+    padding: 14px 36px;
     border-radius: 6px;
 }
 
@@ -146,7 +158,8 @@ nav ul li a:hover {
     position: relative;
     z-index: 3;
     text-align: center;
-    max-width: 900px;
+    /* Largura responsiva: limita pelo viewport para melhor escala em monitores grandes */
+    max-width: min(900px, 70vw);
     padding: 0 20px;
 }
 
@@ -206,7 +219,7 @@ nav ul li a:hover {
 }
 
 .hero-content h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.6rem, 3.8vw, 3.5rem);
   font-weight: 900;
   letter-spacing: 2px;
   animation: fadeUp 1.2s ease forwards; 
@@ -243,28 +256,36 @@ nav ul li a:hover {
 }
 
 .promo-badge {
-    margin: 20px 0;
-    font-size: 1.2rem;
-    color: #39FF14;
-    font-weight: bold;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 0.95rem;
+    color: #000;
+    background: var(--accent);
+    padding: 6px 10px;
+    font-weight: 900;
+    border-radius: 6px;
+    z-index: 7;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
 }
 
 /* Botão Neon */
 .btn-neon {
-  padding: 14px 32px;
-  border: 2px solid #00ff66;
-  color: #00ff66;
-  text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(0,255,102,0.4);
+    /* compat: valores antigos mantidos visualmente via variáveis */
+    padding: var(--btn-padding);
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 900;
+    letter-spacing: 1px;
+    transition: all 0.18s ease;
+    box-shadow: 0 6px 18px rgba(0,255,102,0.12);
 }
 
 .btn-neon.primary {
-  animation: pulse-neon 2s infinite;
-  box-shadow: 0 0 25px rgba(0,255,90,.6);
-  transform-origin: center;
+    animation: pulse-neon 2s infinite;
+    box-shadow: 0 10px 30px rgba(0,255,90,.12);
+    transform-origin: center;
 }
 
 .pulse {
@@ -284,10 +305,38 @@ nav ul li a:hover {
 }
 
 .btn-neon:hover {
-  background: #00ff66;
-  color: #000;
-  box-shadow: 0 0 25px rgba(0,255,102,0.8);
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 10px 30px rgba(0,255,102,0.18);
 }
+
+/* Botões base: padroniza aparência entre telas */
+.btn, .btn-neon, .btn-buy-now, .btn-details {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-sm);
+    padding: var(--btn-padding);
+    border-radius: 6px;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .18s ease, background .12s ease;
+}
+
+.btn-primary, .btn-neon.primary, .btn-buy-now {
+    background: var(--accent);
+    color: #000;
+    border: none;
+}
+
+.btn-details {
+    background: transparent;
+    color: var(--branco);
+    border: 2px solid rgba(255,255,255,0.06);
+}
+
+.btn:hover { transform: translateY(-3px); }
 
 /* Grid de Produtos */
 .products {
@@ -303,7 +352,8 @@ nav ul li a:hover {
 }
 
 .product-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* contexto para badges e overlays */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
@@ -322,7 +372,7 @@ nav ul li a:hover {
 }
 
 .price {
-    color: var(--verde-neon);
+    color: var(--accent);
     font-size: 1.5rem;
     font-weight: 900;
 }
@@ -345,7 +395,7 @@ nav ul li a:hover {
     display: block;
     width: 60px;
     height: 3px;
-    background: var(--verde-neon);
+    background: var(--accent);
     margin: 12px auto 0;
 }
 
@@ -356,14 +406,17 @@ nav ul li a:hover {
 
 .badge-discount {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    background: #39FF14;
+    top: 12px;
+    left: 12px;
+    background: var(--accent);
     color: #000;
-    padding: 5px 10px;
+    padding: 6px 10px;
     font-weight: 900;
-    font-size: 0.7rem;
-    z-index: 2;
+    font-size: 0.75rem;
+    z-index: 6;
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    white-space: nowrap;
 }
 
 /* Informações do Produto */
@@ -375,7 +428,7 @@ nav ul li a:hover {
 }
 
 .category {
-    color: var(--verde-neon);
+    color: var(--accent);
     font-size: 0.75rem;
     font-weight: 900;
     text-transform: uppercase;
@@ -401,7 +454,7 @@ nav ul li a:hover {
 .btn-buy-now {
     display: block;
     width: 100%;
-    background: var(--verde-neon);
+    background: var(--accent);
     color: #000;
     padding: 14px;
     text-align: center;
@@ -421,7 +474,7 @@ nav ul li a:hover {
 /* --- RODAPÉ PADRONIZADO (DESKTOP) --- */
 footer {
     background-color: #000;
-    border-top: 1px solid #39FF14;
+    border-top: 1px solid var(--accent);
     padding: 60px 10% 20px;
     margin-top: 80px;
 }
@@ -440,7 +493,7 @@ footer {
 }
 
 .footer-box h4 span {
-    color: #39FF14;
+    color: var(--accent);
 }
 
 .footer-box p {
@@ -465,7 +518,7 @@ footer {
 }
 
 .footer-box ul li a:hover {
-    color: #39FF14;
+    color: var(--accent);
 }
 
 /* Ícones de Pagamento com FontAwesome ou Imagem */
@@ -477,7 +530,7 @@ footer {
 }
 
 .payment-icons i:hover {
-    color: #39FF14;
+    color: var(--accent);
     cursor: pointer;
 }
 
@@ -509,7 +562,7 @@ table {
 }
 
 th {
-    background-color: #39FF14;
+    background-color: var(--accent);
     color: #000;
     padding: 15px;
     text-transform: uppercase;
@@ -564,7 +617,7 @@ tr:hover {
 .cat-card:hover {
     filter: grayscale(0%);
     transform: scale(1.02);
-    box-shadow: 0 0 15px #39FF14;
+    box-shadow: 0 0 15px var(--accent);
 }
 
 /* Coloque fotos de estádios ou torcidas aqui */
@@ -579,12 +632,12 @@ tr:hover {
     padding: 15px 10%;
     font-size: 0.8rem;
     font-weight: bold;
-    color: #39FF14;
+    color: var(--accent);
     text-transform: uppercase;
 }
 
 .custom-badge {
-    background: #39FF14;
+    background: var(--accent);
     color: #000;
     font-size: 0.7rem;
     padding: 2px 8px;
@@ -634,13 +687,65 @@ tr:hover {
 }
 
 .input-custom:focus {
-    border-color: var(--verde-neon);
+    border-color: var(--accent);
     outline: none;
 }
 
 .customization-fields {
     margin-top: 15px;
 }
+
+/* ===== PADRONIZAÇÃO DE FORMULÁRIOS E INPUTS ===== */
+form, .form-container {
+    background: transparent;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"], select, textarea, .input-custom {
+    background: var(--preto-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    color: var(--branco);
+    padding: 10px 12px;
+    border-radius: var(--card-radius);
+    transition: border-color .12s ease, box-shadow .12s ease, transform .12s ease;
+    width: 100%;
+}
+
+select { appearance: none; }
+
+input:focus, select:focus, textarea:focus, .input-custom:focus {
+    border-color: var(--accent);
+    box-shadow: 0 6px 18px rgba(0,255,102,0.06);
+    outline: none;
+}
+
+label {
+    color: var(--muted);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.form-row { display:flex; gap:var(--gap-md); align-items:center; }
+.form-actions { display:flex; gap:var(--gap-sm); justify-content:flex-end; margin-top:12px; }
+
+/* Carrinho / listas: padroniza cartões internos */
+.cart-items .cart-item, .product-card, .product-info {
+    background: rgba(255,255,255,0.02);
+    border-radius: var(--card-radius);
+}
+
+.cart-items .cart-item {
+    border: 1px solid rgba(255,255,255,0.04);
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* Pequenos ajustes para contraste secundário */
+.muted-text { color: var(--muted); }
+
 
 .cart-container {
     position: relative;
@@ -660,7 +765,7 @@ tr:hover {
 }
 
 #cart-count {
-    background-color: var(--verde-neon);
+    background-color: var(--accent);
     color: black;
     font-size: 12px;
     font-weight: 900;
@@ -672,7 +777,7 @@ tr:hover {
 }
 
 /* ===== HERO OVERLAY STRATÉGICO ===== */
-.hero::after {
+.hero::after, .hero-video::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -754,7 +859,7 @@ tr:hover {
     }
 
     /* 2. BANNER HERO: Otimizado para carregar a arte vertical */
-    .hero {
+    .hero, .hero-video {
         background-image: url('img_roles/BannerMobileNew.png') !important;
         aspect-ratio: 9 / 16 !important; 
         background-size: cover !important;
@@ -773,13 +878,35 @@ tr:hover {
     width: 80% !important;
     max-width: 300px !important;
     padding: 12px !important;
-    background-color: #39FF14 !important;
+    background-color: var(--accent) !important;
     color: #000 !important;
     font-weight: 900 !important;
     text-decoration: none !important;
     border-radius: 8px !important;
     box-shadow: 0 0 20px rgba(57, 255, 20, 0.6) !important;
     text-align: center !important;
+}
+
+/* Ajustes para telas muito largas (monitores grandes) */
+@media (min-width: 1600px) {
+    .hero-video {
+        /* Use uma altura menor relativa ao viewport em monitores muito grandes */
+        height: 70vh;
+        max-height: 1000px;
+    }
+
+    .hero-content {
+        max-width: min(900px, 60vw);
+    }
+
+    .hero-title {
+        font-size: clamp(2.2rem, 2.2vw, 3.2rem);
+    }
+
+    .hero-cta {
+        font-size: 1rem;
+        padding: 12px 28px;
+    }
 }
 
     /* 4. MOSAICO DE CATEGORIAS */

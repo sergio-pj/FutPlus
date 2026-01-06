@@ -211,4 +211,17 @@
     window.removerItem = removerItem;
     window.atualizarContador = atualizarContador;
     window.atualizarTotais = atualizarTotais;
+    
+    // Exporta para namespace FutPlus
+    window.FutPlus = window.FutPlus || {};
+    window.FutPlus.lerEnormalizarCarrinho = lerEnormalizarCarrinho;
+    window.FutPlus.criarContainerSeFaltante = criarContainerSeFaltante;
+    window.FutPlus.computeBundleTotal = computeBundleTotal;
+    window.FutPlus.PACK_PRICES = PACK_PRICES;
+    window.FutPlus.removerItem = window.removerItem;
+    window.FutPlus.renderizarCarrinho = renderizarCarrinho;
+    window.FutPlus.atualizarContador = atualizarContador;
+    window.FutPlus.atualizarTotais = atualizarTotais;
+    window.FutPlus.aplicarCupom = window.aplicarCupom;
+    window.FutPlus.checkoutWhatsApp = window.checkoutWhatsApp;
 })();

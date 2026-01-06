@@ -301,3 +301,20 @@ function atualizarPreview() {
 
 // Opcional: Garante que ao carregar a página a camisa já mostre os padrões
 window.onload = atualizarPreview;
+
+// Exporta funções públicas para namespace FutPlus
+window.FutPlus = window.FutPlus || {};
+window.FutPlus.verificarIdProduto = verificarIdProduto;
+window.FutPlus.preencherDadosProduto = preencherDadosProduto;
+window.FutPlus.atualizarTudo = atualizarTudo;
+window.FutPlus.trocarFoto = trocarFoto;
+window.FutPlus.adicionarAoCarrinho = adicionarAoCarrinho;
+window.FutPlus.mostrarToast = mostrarToast;
+window.FutPlus.atualizarContador = atualizarContador;
+window.FutPlus.selecionarTamanho = selecionarTamanho;
+window.FutPlus.calcularFrete = calcularFrete;
+window.FutPlus.checkoutExpresso = checkoutExpresso;
+window.FutPlus.comprarAgoraDireto = comprarAgoraDireto;
+window.FutPlus.filtrarProdutos = filtrarProdutos;
+window.FutPlus.carregarProdutos = carregarProdutos;
+window.FutPlus.atualizarPreview = atualizarPreview;

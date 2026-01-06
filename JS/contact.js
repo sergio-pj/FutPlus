@@ -126,4 +126,12 @@
       }
     });
   });
+
+  // Exporta utilitários do contato para o namespace FutPlus
+  window.FutPlus = window.FutPlus || {};
+  window.FutPlus.validateContact = validate;
+  window.FutPlus.saveContactLocal = saveLocal;
+  window.FutPlus.sendMailto = sendMailto;
+  window.FutPlus.initEmailJS = initEmailJS;
+  window.FutPlus.sendWithEmailJS = sendWithEmailJS;
 })();

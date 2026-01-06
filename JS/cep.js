@@ -123,4 +123,13 @@
   window.FORCE_LOCAL_FRETE = window.FORCE_LOCAL_FRETE || false;
 
   window.calcularFreteCarrinho = calcularFreteCarrinho;
+
+  // Exporta para namespace FutPlus
+  window.FutPlus = window.FutPlus || {};
+  window.FutPlus.limparCep = limparCep;
+  window.FutPlus.obterInfoViaCep = obterInfoViaCep;
+  window.FutPlus.calcularFretePorCep = calcularFretePorCep;
+  window.FutPlus.calcularFreteCarrinho = calcularFreteCarrinho;
+  window.FutPlus.calcularFreteLocalPorUf = calcularFreteLocalPorUf;
+  window.FutPlus.formatMoneyBR = formatMoneyBR;
 })();
