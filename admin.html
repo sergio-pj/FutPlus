@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin | FutPlus</title>
+    <link rel="icon" type="image/png" href="img_roles/F (1).png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Styles/admin.css">
+</head>
+<body>
+
+    <!-- ===== TELA DE LOGIN ===== -->
+    <div class="admin-login" id="admin-login">
+        <div class="login-box">
+            <div class="logo">FUT<span>PLUS</span></div>
+            <p class="subtitle">Painel Administrativo</p>
+            <form id="login-form" onsubmit="event.preventDefault()">
+                <input type="password" id="admin-password" placeholder="Senha de acesso" autocomplete="off">
+                <button type="submit" class="btn-login" id="btn-login">
+                    <i class="fas fa-lock"></i> Entrar
+                </button>
+            </form>
+            <p class="login-error" id="login-error">
+                <i class="fas fa-exclamation-circle"></i> Senha incorreta. Tente novamente.
+            </p>
+        </div>
+    </div>
+
+    <!-- ===== PAINEL PRINCIPAL ===== -->
+    <div class="admin-layout" id="admin-layout">
+
+        <!-- Header -->
+        <header class="admin-header">
+            <div>
+                <span class="logo">FUT<span>PLUS</span></span>
+                <span class="admin-badge">Admin</span>
+            </div>
+            <button class="btn-logout" id="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </header>
+
+        <!-- Navegação por abas -->
+        <nav class="admin-tabs">
+            <button class="tab-btn active" data-tab="dashboard">
+                <i class="fas fa-chart-bar"></i> Dashboard
+            </button>
+            <button class="tab-btn" data-tab="pedidos">
+                <i class="fas fa-shopping-bag"></i> Pedidos
+            </button>
+            <button class="tab-btn" data-tab="produtos">
+                <i class="fas fa-tshirt"></i> Produtos
+            </button>
+            <button class="tab-btn" data-tab="cupons">
+                <i class="fas fa-tag"></i> Cupons
+            </button>
+        </nav>
+
+        <!-- Conteúdo das abas -->
+        <main class="admin-content">
+
+            <!-- ===== ABA: DASHBOARD ===== -->
+            <section id="tab-dashboard" class="tab-panel active">
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-icon">📦</span>
+                        <span class="stat-label">Total de Pedidos</span>
+                        <span class="stat-value" id="stat-pedidos">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">💰</span>
+                        <span class="stat-label">Receita Total</span>
+                        <span class="stat-value" id="stat-receita">R$ 0,00</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">👕</span>
+                        <span class="stat-label">Itens Vendidos</span>
+                        <span class="stat-value" id="stat-itens">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">🏪</span>
+                        <span class="stat-label">Produtos Cadastrados</span>
+                        <span class="stat-value" id="stat-produtos">0</span>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <h2><i class="fas fa-clock"></i> Pedidos Recentes</h2>
+                    <button class="btn-primary btn-sm" onclick="document.querySelector('[data-tab=pedidos]').click()">
+                        Ver todos
+                    </button>
+                </div>
+
+                <div class="admin-table-wrap">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Data</th>
+                                <th>Itens</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-orders-body">
+                            <tr><td colspan="5"><div class="empty-state"><i class="fas fa-inbox"></i>Nenhum pedido ainda.</div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top:24px;padding:16px;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:10px;font-size:0.82rem;color:var(--text-gray);line-height:1.8">
+                    <strong style="color:var(--neon-green)"><i class="fas fa-info-circle"></i> Como funciona?</strong><br>
+                    Os pedidos são registrados automaticamente quando um cliente clica em <em>"Finalizar via WhatsApp"</em> na página do carrinho. As estatísticas são atualizadas em tempo real com base no histórico local.
+                </div>
+            </section>
+
+            <!-- ===== ABA: PEDIDOS ===== -->
+            <section id="tab-pedidos" class="tab-panel">
+
+                <div class="section-header">
+                    <h2><i class="fas fa-shopping-bag"></i> Histórico de Pedidos</h2>
+                    <button class="btn-danger btn-sm" onclick="adminClearOrders()">
+                        <i class="fas fa-trash"></i> Limpar histórico
+                    </button>
+                </div>
+
+                <div class="admin-table-wrap">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Data</th>
+                                <th>Itens</th>
+                                <th>Total</th>
+                                <th>Cupom</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-body">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ===== ABA: PRODUTOS ===== -->
+            <section id="tab-produtos" class="tab-panel">
+
+                <div class="section-header">
+                    <h2><i class="fas fa-tshirt"></i> Catálogo de Produtos</h2>
+                </div>
+
+                <div class="products-grid" id="products-grid"></div>
+
+                <!-- Formulário para adicionar produto -->
+                <div class="form-panel">
+                    <h3><i class="fas fa-plus-circle"></i> Adicionar Novo Produto</h3>
+                    <form id="add-product-form">
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label>Nome do Produto *</label>
+                                <input type="text" id="p-nome" placeholder="Ex: Camisa Flamengo 2025" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Categoria *</label>
+                                <input type="text" id="p-categoria" placeholder="Ex: BRASILEIRÃO / SÉRIE A" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Estilo</label>
+                                <select id="p-estilo">
+                                    <option value="brasileirao">Brasileirão</option>
+                                    <option value="europeus">Europeus</option>
+                                    <option value="retro selecoes">Retrô / Seleções</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Preço (R$) *</label>
+                                <input type="number" id="p-preco" placeholder="140" min="1" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Badge (ex: -15% OFF)</label>
+                                <input type="text" id="p-badge" placeholder="-15% OFF">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>URL da Imagem (relativa ao site)</label>
+                                <input type="text" id="p-foto" placeholder="Destaques/nome-da-imagem.png">
+                            </div>
+                        </div>
+                        <div style="margin-top:16px">
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-plus"></i> Adicionar Produto
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div style="padding:14px 16px;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:8px;font-size:0.8rem;color:var(--text-gray)">
+                    <i class="fas fa-info-circle" style="color:var(--neon-green)"></i>
+                    Produtos adicionados aqui ficam salvos no navegador. Para adicionar produtos permanentemente ao catálogo, edite o arquivo <code style="color:var(--neon-green)">JS/produtos.json</code> e as páginas HTML correspondentes.
+                </div>
+            </section>
+
+            <!-- ===== ABA: CUPONS ===== -->
+            <section id="tab-cupons" class="tab-panel">
+
+                <div class="section-header">
+                    <h2><i class="fas fa-tag"></i> Cupons de Desconto</h2>
+                </div>
+
+                <div class="coupon-list" id="coupon-list"></div>
+
+                <div style="padding:14px 16px;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:8px;font-size:0.8rem;color:var(--text-gray)">
+                    <i class="fas fa-info-circle" style="color:var(--neon-green)"></i>
+                    Os cupons são validados no carrinho de compras. Para criar novos cupons, edite a função <code style="color:var(--neon-green)">aplicarCupom()</code> em <code style="color:var(--neon-green)">JS/carrinho.js</code>.
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modal de detalhes do pedido -->
+    <div class="modal-overlay" id="order-modal">
+        <div class="modal-box">
+            <h3><i class="fas fa-receipt"></i> Detalhes do Pedido</h3>
+            <div id="order-modal-body"></div>
+            <button class="modal-close" onclick="adminCloseOrderModal()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="JS/admin.js"></script>
+</body>
+</html>

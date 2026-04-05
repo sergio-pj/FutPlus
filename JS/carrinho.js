@@ -186,9 +186,11 @@
         const carrinho = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
         if (carrinho.length === 0) return alert("Carrinho vazio!");
 
-        const total = document.getElementById('total-val').innerText;
-        const subtotal = document.getElementById('subtotal-val').innerText;
-        
+        const totalEl = document.getElementById('total-val');
+        const subtotalEl = document.getElementById('subtotal-val');
+        const total = totalEl ? totalEl.innerText : 'R$ 0,00';
+        const subtotal = subtotalEl ? subtotalEl.innerText : 'R$ 0,00';
+
         let msg = `⚽ *NOVO PEDIDO - FUTPLUS* ⚽%0A%0A`;
 
         carrinho.forEach((item, i) => {
@@ -198,6 +200,30 @@
         });
 
         msg += `*TOTAL FINAL:* ${total}%0A`;
+
+        // Salva o pedido no histórico de pedidos
+        const totalNum = parseFloat((total || '0').replace('R$', '').replace(/\./g, '').replace(',', '.').trim()) || 0;
+        const pedido = {
+            id: Date.now(),
+            data: new Date().toISOString(),
+            itens: carrinho.map(it => ({
+                nome: it.nome,
+                tamanho: it.tamanho,
+                personalizacao: it.personalizacao,
+                estilo: it.estilo,
+                preco: it.preco,
+                quantidade: it.quantidade || 1
+            })),
+            subtotal: subtotal,
+            total: total,
+            totalNum: totalNum,
+            cupom: window.cupomAplicado || 'Nenhum',
+            status: 'enviado'
+        };
+        const pedidos = JSON.parse(localStorage.getItem('futplus_orders') || '[]');
+        pedidos.unshift(pedido);
+        localStorage.setItem('futplus_orders', JSON.stringify(pedidos));
+
         window.open(`https://wa.me/5511980177729?text=${msg}`, '_blank');
     };
 

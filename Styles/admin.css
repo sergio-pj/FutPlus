@@ -1,0 +1,595 @@
+/* ==========================================================================
+   PAINEL ADMINISTRATIVO — FUTPLUS
+   ========================================================================== */
+
+:root {
+    --neon-green: #39FF14;
+    --dark-bg: #0a0a0a;
+    --dark-card: #111111;
+    --dark-border: #1e1e1e;
+    --text-gray: #aaa;
+    --text-light: #fff;
+    --danger: #ff4444;
+    --warning: #ffaa00;
+    --success: #39FF14;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+}
+
+/* ---- LOGIN SCREEN ---- */
+.admin-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-box {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 12px;
+    padding: 48px 40px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-box .logo {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 6px;
+}
+
+.login-box .logo span { color: var(--neon-green); }
+
+.login-box .subtitle {
+    color: var(--text-gray);
+    font-size: 0.85rem;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 14px 16px;
+    background: #1a1a1a;
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    color: var(--text-light);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    transition: border-color 0.3s;
+}
+
+.login-box #login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-box input[type="password"]:focus {
+    outline: none;
+    border-color: var(--neon-green);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background: var(--neon-green);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 900;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: opacity 0.2s;
+}
+
+.btn-login:hover { opacity: 0.85; }
+
+.login-error {
+    color: var(--danger);
+    font-size: 0.82rem;
+    margin-top: 10px;
+    display: none;
+}
+
+/* ---- ADMIN LAYOUT ---- */
+.admin-layout { display: none; min-height: 100vh; flex-direction: column; }
+
+.admin-header {
+    background: #000;
+    border-bottom: 1px solid var(--dark-border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.admin-header .logo { font-size: 1.4rem; font-weight: 900; }
+.admin-header .logo span { color: var(--neon-green); }
+.admin-badge {
+    background: var(--neon-green);
+    color: #000;
+    font-size: 0.65rem;
+    font-weight: 900;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
+}
+
+.btn-logout {
+    background: transparent;
+    border: 1px solid var(--dark-border);
+    color: var(--text-gray);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.btn-logout:hover { border-color: var(--danger); color: var(--danger); }
+
+/* ---- TABS ---- */
+.admin-tabs {
+    background: #050505;
+    border-bottom: 1px solid var(--dark-border);
+    display: flex;
+    padding: 0 24px;
+    gap: 4px;
+    overflow-x: auto;
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--text-gray);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 14px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover { color: var(--text-light); }
+.tab-btn.active { color: var(--neon-green); border-bottom-color: var(--neon-green); }
+
+/* ---- CONTENT ---- */
+.admin-content { padding: 28px 24px; flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ---- DASHBOARD STATS ---- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-card .stat-icon {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+}
+
+.stat-card .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-card .stat-value {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--neon-green);
+}
+
+/* ---- SECTION TITLE ---- */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.section-header h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-light);
+}
+
+/* ---- TABLE ---- */
+.admin-table-wrap {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.admin-table thead {
+    background: #1a1a1a;
+}
+
+.admin-table th {
+    padding: 12px 16px;
+    text-align: left;
+    color: var(--text-gray);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.admin-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #161616;
+    vertical-align: middle;
+}
+
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td { background: #151515; }
+
+.empty-state {
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--text-gray);
+    font-size: 0.88rem;
+}
+
+.empty-state i { font-size: 2.5rem; margin-bottom: 12px; display: block; opacity: 0.4; }
+
+/* ---- STATUS BADGE ---- */
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-badge.enviado { background: rgba(57,255,20,0.15); color: var(--neon-green); }
+.status-badge.pendente { background: rgba(255,170,0,0.15); color: var(--warning); }
+.status-badge.cancelado { background: rgba(255,68,68,0.15); color: var(--danger); }
+
+/* ---- COUPON BADGE ---- */
+.coupon-tag {
+    background: rgba(57,255,20,0.1);
+    border: 1px solid rgba(57,255,20,0.25);
+    color: var(--neon-green);
+    font-size: 0.72rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+/* ---- PRODUCT CARDS ---- */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.product-admin-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-admin-card .card-img {
+    height: 180px;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.product-admin-card .card-img img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.product-admin-card .card-img .no-img {
+    color: var(--text-gray);
+    font-size: 0.8rem;
+}
+
+.product-admin-card .card-body {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.product-admin-card .card-category {
+    font-size: 0.7rem;
+    color: var(--neon-green);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+.product-admin-card .card-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.product-admin-card .card-price {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--neon-green);
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+/* ---- ADD PRODUCT FORM ---- */
+.form-panel {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.form-panel h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    color: var(--text-gray);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select {
+    background: #1a1a1a;
+    border: 1px solid var(--dark-border);
+    border-radius: 6px;
+    color: var(--text-light);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    padding: 10px 12px;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--neon-green);
+}
+
+.form-group.full-width { grid-column: 1 / -1; }
+
+.btn-primary {
+    background: var(--neon-green);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 900;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s;
+}
+
+.btn-primary:hover { opacity: 0.85; }
+
+.btn-danger {
+    background: transparent;
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-danger:hover { background: var(--danger); color: #fff; }
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+}
+
+/* ---- COUPONS ---- */
+.coupon-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+
+.coupon-item {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.coupon-item .coupon-code {
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: var(--neon-green);
+}
+
+.coupon-item .coupon-desc {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    flex: 1;
+}
+
+.coupon-item .coupon-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ---- ORDER DETAIL MODAL ---- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    display: none;
+}
+
+.modal-overlay.open { display: flex; }
+
+.modal-box {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 12px;
+    padding: 28px;
+    max-width: 540px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-box h3 {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.modal-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #161616;
+    font-size: 0.85rem;
+}
+
+.modal-item:last-child { border-bottom: none; }
+
+.modal-close {
+    background: transparent;
+    border: 1px solid var(--dark-border);
+    color: var(--text-gray);
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    margin-top: 16px;
+    float: right;
+}
+
+/* ---- TOAST NOTIFICATIONS ---- */
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 2000;
+}
+
+.toast {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-left: 4px solid var(--neon-green);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.82rem;
+    max-width: 280px;
+    animation: slideIn 0.3s ease;
+}
+
+.toast.error { border-left-color: var(--danger); }
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+    .admin-content { padding: 16px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .admin-table td, .admin-table th { padding: 8px 10px; font-size: 0.78rem; }
+    .coupon-item { flex-direction: column; align-items: flex-start; }
+}
